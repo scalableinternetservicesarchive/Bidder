@@ -22,10 +22,13 @@ Project “Bidder” is an online selling and bidding system. It has the following f
 
 Chien-Yu Chan
 <img src="https://dl.dropbox.com/s/f74li4umccggmcs/chien-yu.jpg?dl=0" height="250" />
+
 Yiting Mao
 <img src="https://dl.dropbox.com/s/ssgvzww8kghvloe/yiting.jpg?dl=0" height="250" />
+
 Bingrui Dong
 <img src="https://dl.dropbox.com/s/53tdt1ybum3w2ni/bingrui.jpg?dl=0" height="250" />
+
 Shuyan Li
 <img src="https://dl.dropbox.com/s/btfxgoaqfj2x8zj/shuyan.jpg?dl=0" height="250" />
 
