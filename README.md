@@ -29,11 +29,11 @@ Project “Bidder” is an online selling and bidding system. It has the following f
 Team member:
 
 Chien-Yu Chan
-![Chien-Yu photo](https://github.com/ShaneC-C-Y/cs291temp/blob/master/photo/chien-yu.jpg)
+![Chien-Yu photo](https://github.com/ShaneC-C-Y/cs291temp/blob/master/photo/chien-yu.jpg =250x)
 Yiting Mao
-![Yiting photo](https://github.com/ShaneC-C-Y/cs291temp/blob/master/photo/yiting.jpg)
+![Yiting photo](https://github.com/ShaneC-C-Y/cs291temp/blob/master/photo/yiting.jpg =250x)
 Bingrui Dong
-![Bingrui photo](https://github.com/ShaneC-C-Y/cs291temp/blob/master/photo/bingrui.jpg)
+![Bingrui photo](https://github.com/ShaneC-C-Y/cs291temp/blob/master/photo/bingrui.jpg =250x)
 Shuyan Li
-![Shuyan photo](https://github.com/ShaneC-C-Y/cs291temp/blob/master/photo/shuyan.jpg)
+![Shuyan photo](https://github.com/ShaneC-C-Y/cs291temp/blob/master/photo/shuyan.jpg =250x)
 
