@@ -1,39 +1,31 @@
-# README
+# Bidder
 
-Project description:
+## Project description:
 
 The goal for this long term project “Bidder” is to understand the principles of the server and ruby on rail server design and implementation. 
 
 Project “Bidder” is an online selling and bidding system. It has the following features in the future:
 
-1: Bid
+* Bid
 
+* Search
 
-2: Search
+* Follow
 
+* History:
 
-
-3: Follow
-
-
-
-4: History:
+* Hot item:  
 
 
 
-5: Hot item:  
-
-
-
-
-Team member:
+## Team member
 
 Chien-Yu Chan
-![Chien-Yu photo](https://github.com/ShaneC-C-Y/cs291temp/blob/master/photo/chien-yu.jpg =250x)
+![Chien-Yu photo](https://dl.dropbox.com/s/f74li4umccggmcs/chien-yu.jpg?dl=0 =250x)
 Yiting Mao
-![Yiting photo](https://github.com/ShaneC-C-Y/cs291temp/blob/master/photo/yiting.jpg =250x)
+![Yiting photo](https://dl.dropbox.com/s/ssgvzww8kghvloe/yiting.jpg?dl=0 =250x)
 Bingrui Dong
-![Bingrui photo](https://github.com/ShaneC-C-Y/cs291temp/blob/master/photo/bingrui.jpg =250x)
+![Bingrui photo](https://dl.dropbox.com/s/53tdt1ybum3w2ni/bingrui.jpg?dl=0 =250x)
 Shuyan Li
-![Shuyan photo](https://github.com/ShaneC-C-Y/cs291temp/blob/master/photo/shuyan.jpg =250x)
+![Shuyan photo](https://dl.dropbox.com/s/btfxgoaqfj2x8zj/shuyan.jpg?dl=0 =250x)
 
