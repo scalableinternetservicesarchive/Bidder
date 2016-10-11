@@ -71,6 +71,6 @@ class BidItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_item_params
-      params.require(:bid_item).permit(:name, :description, :price)
+      params.require(:bid_item).permit(:name, :description, :price, :image)
     end
 end
