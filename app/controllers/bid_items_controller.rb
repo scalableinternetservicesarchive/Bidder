@@ -1,6 +1,6 @@
 class BidItemsController < ApplicationController
   before_action :set_bid_item, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /bid_items
   # GET /bid_items.json
   def index
@@ -14,7 +14,7 @@ class BidItemsController < ApplicationController
 
   # GET /bid_items/new
   def new
-    @bid_item = BidItem.new
+    @bid_item = current_user.bid_items.build
   end
 
   # GET /bid_items/1/edit
@@ -24,8 +24,9 @@ class BidItemsController < ApplicationController
   # POST /bid_items
   # POST /bid_items.json
   def create
-    @bid_item = BidItem.new(bid_item_params)
-
+    @bid_item = current_user.bid_items.build(bid_item_params)
+    #@bid_item.saler_id = current_user.__id__
+    #@bid_item.bidder_id = nil
     respond_to do |format|
       if @bid_item.save
         format.html { redirect_to @bid_item, notice: 'Bid item was successfully created.' }
@@ -69,6 +70,6 @@ class BidItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_item_params
-      params.require(:bid_item).permit(:name, :price, :saler_id, :bidder_id, :description)
+      params.require(:bid_item).permit(:name, :price, :description)
     end
 end
