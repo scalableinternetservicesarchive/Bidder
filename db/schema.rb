@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161013023019) do
+ActiveRecord::Schema.define(version: 20161015081623) do
 
   create_table "bid_items", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "price"
-    t.integer  "saler_id"
-    t.integer  "bidder_id"
+    t.string   "item_name"
+    t.integer  "starting_price"
+    t.integer  "seller_id"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
 end
