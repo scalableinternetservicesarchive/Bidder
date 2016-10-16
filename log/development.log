@@ -2934,3 +2934,307 @@ Processing by BidItemsController#index as HTML
 Completed 200 OK in 176ms (Views: 76.4ms | ActiveRecord: 2.3ms)
 
 
+Started GET "/" for 127.0.0.1 at 2016-10-15 19:52:02 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (9.3ms)
+  Rendered layouts/_rails_default.html.erb (808.9ms)
+  Rendered layouts/_shim.html.erb (0.9ms)
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (1.4ms)
+Completed 200 OK in 960ms (Views: 907.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bid_items" for 127.0.0.1 at 2016-10-15 19:52:06 -0700
+Processing by BidItemsController#index as HTML
+  Rendering bid_items/index.html.erb within layouts/application
+  [1m[36mBidItem Load (0.4ms)[0m  [1m[34mSELECT "bid_items".* FROM "bid_items"[0m
+  Rendered bid_items/index.html.erb within layouts/application (21.4ms)
+  Rendered layouts/_rails_default.html.erb (25.1ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 106ms (Views: 53.8ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-10-15 19:52:09 -0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_rails_default.html.erb (55.8ms)
+  Rendered layouts/_shim.html.erb (0.9ms)
+  Rendered layouts/_header.html.erb (1.7ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 79ms (Views: 76.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/help" for 127.0.0.1 at 2016-10-15 19:52:09 -0700
+Processing by StaticPagesController#help as HTML
+  Rendering static_pages/help.html.erb within layouts/application
+  Rendered static_pages/help.html.erb within layouts/application (0.8ms)
+  Rendered layouts/_rails_default.html.erb (58.9ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 434ms (Views: 73.4ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2016-10-15 19:52:11 -0700
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"KSf4rO90d9Yke8F+F0iyEVLb1vtsgk2s00ahoCp4cW5wFRvl5F3FwGaOFmOus16fnPq357YrmMo8eACJm2lEIQ=="}
+Redirected to http://localhost:3000/
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 302 Found in 399ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-10-15 19:52:12 -0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_rails_default.html.erb (26.9ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 34ms (Views: 33.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-10-15 20:04:14 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (3.3ms)
+  Rendered layouts/_rails_default.html.erb (188.1ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 208ms (Views: 199.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-10-15 20:04:17 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (330.1ms)
+  Rendered layouts/_rails_default.html.erb (17.7ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 403ms (Views: 367.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-10-15 20:04:19 -0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_rails_default.html.erb (37.3ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 53ms (Views: 50.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bid_items" for 127.0.0.1 at 2016-10-15 20:04:20 -0700
+Processing by BidItemsController#index as HTML
+  Rendering bid_items/index.html.erb within layouts/application
+  [1m[36mBidItem Load (0.1ms)[0m  [1m[34mSELECT "bid_items".* FROM "bid_items"[0m
+  Rendered bid_items/index.html.erb within layouts/application (8.2ms)
+  Rendered layouts/_rails_default.html.erb (21.3ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 40ms (Views: 34.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/bid_items/new" for 127.0.0.1 at 2016-10-15 20:04:21 -0700
+Processing by BidItemsController#new as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-10-15 20:04:21 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (0.8ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (3.2ms)
+  Rendered layouts/_rails_default.html.erb (20.1ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 30ms (Views: 28.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2016-10-15 20:04:25 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IX2/lUqBlFSiZmEPgLRm6CJz/A2AbK0zktB3s+YPcol3bnoAooidiOWQnBWEkKDGtHWvJVnqBeGKnksP+qTRSQ==", "user"=>{"email"=>"1@1", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "1@1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = ?, "last_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["current_sign_in_at", 2016-10-16 03:04:25 UTC], ["last_sign_in_at", 2016-10-14 01:50:54 UTC], ["sign_in_count", 3], ["updated_at", 2016-10-16 03:04:25 UTC], ["id", 1]]
+  [1m[35m (102.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/bid_items/new
+Completed 302 Found in 353ms (ActiveRecord: 104.0ms)
+
+
+Started GET "/bid_items/new" for 127.0.0.1 at 2016-10-15 20:04:25 -0700
+Processing by BidItemsController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering bid_items/new.html.erb within layouts/application
+  Rendered bid_items/_form.html.erb (17.8ms)
+  Rendered bid_items/new.html.erb within layouts/application (35.4ms)
+  Rendered layouts/_rails_default.html.erb (32.2ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 90ms (Views: 77.4ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/bid_items" for 127.0.0.1 at 2016-10-15 20:04:31 -0700
+Processing by BidItemsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Cig1gc5NrjB/p5YX4ymK1N2sE3idAIAUi3X1PbX7X98Sg24CwnHRgcrebV8S2FAtY7NbUsdbsNWqDl9mIS+nZw==", "bid_item"=>{"name"=>"1333", "price"=>"3", "description"=>"3"}, "commit"=>"Create Bid item"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "bid_items" ("name", "price", "description", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "1333"], ["price", 3], ["description", "3"], ["created_at", 2016-10-16 03:04:31 UTC], ["updated_at", 2016-10-16 03:04:31 UTC], ["user_id", 1]]
+  [1m[35m (110.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/bid_items/3
+Completed 302 Found in 239ms (ActiveRecord: 112.7ms)
+
+
+Started GET "/bid_items/3" for 127.0.0.1 at 2016-10-15 20:04:31 -0700
+Processing by BidItemsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBidItem Load (0.4ms)[0m  [1m[34mSELECT  "bid_items".* FROM "bid_items" WHERE "bid_items"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bid_items/show.html.erb within layouts/application
+  Rendered bid_items/show.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_rails_default.html.erb (39.8ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 67ms (Views: 53.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/bid_items" for 127.0.0.1 at 2016-10-15 20:04:33 -0700
+Processing by BidItemsController#index as HTML
+  Rendering bid_items/index.html.erb within layouts/application
+  [1m[36mBidItem Load (0.2ms)[0m  [1m[34mSELECT "bid_items".* FROM "bid_items"[0m
+  Rendered bid_items/index.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_rails_default.html.erb (21.0ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 31ms (Views: 29.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-10-15 20:04:59 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (6.7ms)
+  Rendered layouts/_rails_default.html.erb (186.6ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 210ms (Views: 201.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bid_items" for 127.0.0.1 at 2016-10-15 20:05:03 -0700
+Processing by BidItemsController#index as HTML
+  Rendering bid_items/index.html.erb within layouts/application
+  [1m[36mBidItem Load (0.3ms)[0m  [1m[34mSELECT "bid_items".* FROM "bid_items"[0m
+  Rendered bid_items/index.html.erb within layouts/application (15.5ms)
+  Rendered layouts/_rails_default.html.erb (24.7ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 60ms (Views: 46.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/bid_items/new" for 127.0.0.1 at 2016-10-15 20:05:04 -0700
+Processing by BidItemsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering bid_items/new.html.erb within layouts/application
+  Rendered bid_items/_form.html.erb (392.9ms)
+  Rendered bid_items/new.html.erb within layouts/application (393.9ms)
+  Rendered layouts/_rails_default.html.erb (16.2ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 433ms (Views: 414.6ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/bid_items" for 127.0.0.1 at 2016-10-15 20:05:08 -0700
+Processing by BidItemsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KT7ejGb7xWGn7pTwIvUTyLqVtJeeWd5OhzDu/D34xrr2XxrWCS+mQl7tLevH1TUZx4yqkruPqeQMF2rdvFQTUA==", "bid_item"=>{"name"=>"3", "price"=>"3", "description"=>"3"}, "commit"=>"Create Bid item"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bid_items/new.html.erb within layouts/application
+  Rendered bid_items/_form.html.erb (2.7ms)
+  Rendered bid_items/new.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_rails_default.html.erb (22.0ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 39ms (Views: 30.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/bid_items" for 127.0.0.1 at 2016-10-15 20:05:45 -0700
+Processing by BidItemsController#index as HTML
+  Rendering bid_items/index.html.erb within layouts/application
+  [1m[36mBidItem Load (0.3ms)[0m  [1m[34mSELECT "bid_items".* FROM "bid_items"[0m
+  Rendered bid_items/index.html.erb within layouts/application (7.8ms)
+  Rendered layouts/_rails_default.html.erb (19.7ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 35ms (Views: 32.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/bid_items/new" for 127.0.0.1 at 2016-10-15 20:05:46 -0700
+Processing by BidItemsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering bid_items/new.html.erb within layouts/application
+  Rendered bid_items/_form.html.erb (2.1ms)
+  Rendered bid_items/new.html.erb within layouts/application (2.8ms)
+  Rendered layouts/_rails_default.html.erb (20.0ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 62ms (Views: 27.6ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/bid_items" for 127.0.0.1 at 2016-10-15 20:05:55 -0700
+Processing by BidItemsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"6znUyN6Q6n0oX51genjlgWHu556zU2A0iqpvYkHddMw0WBCSsUSJXtFcJHufWMNQHPf5m5aFF54BjetDwHGhJg==", "bid_item"=>{"name"=>"test", "price"=>"200", "description"=>"test"}, "commit"=>"Create Bid item"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "bid_items" ("name", "price", "description", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "test"], ["price", 200], ["description", "test"], ["created_at", 2016-10-16 03:05:55 UTC], ["updated_at", 2016-10-16 03:05:55 UTC], ["user_id", 1]]
+  [1m[35m (217.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/bid_items/4
+Completed 302 Found in 226ms (ActiveRecord: 218.4ms)
+
+
+Started GET "/bid_items/4" for 127.0.0.1 at 2016-10-15 20:05:55 -0700
+Processing by BidItemsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBidItem Load (0.9ms)[0m  [1m[34mSELECT  "bid_items".* FROM "bid_items" WHERE "bid_items"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering bid_items/show.html.erb within layouts/application
+  Rendered bid_items/show.html.erb within layouts/application (2.1ms)
+  Rendered layouts/_rails_default.html.erb (28.6ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 49ms (Views: 40.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/bid_items" for 127.0.0.1 at 2016-10-15 20:05:56 -0700
+Processing by BidItemsController#index as HTML
+  Rendering bid_items/index.html.erb within layouts/application
+  [1m[36mBidItem Load (0.2ms)[0m  [1m[34mSELECT "bid_items".* FROM "bid_items"[0m
+  Rendered bid_items/index.html.erb within layouts/application (2.5ms)
+  Rendered layouts/_rails_default.html.erb (21.2ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 30ms (Views: 28.8ms | ActiveRecord: 0.2ms)
+
+

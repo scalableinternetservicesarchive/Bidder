@@ -25,8 +25,6 @@ class BidItemsController < ApplicationController
   # POST /bid_items.json
   def create
     @bid_item = current_user.bid_items.build(bid_item_params)
-    #@bid_item.saler_id = current_user.__id__
-    #@bid_item.bidder_id = nil
     respond_to do |format|
       if @bid_item.save
         format.html { redirect_to @bid_item, notice: 'Bid item was successfully created.' }
