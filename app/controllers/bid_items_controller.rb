@@ -3,6 +3,15 @@ class BidItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # GET /bid_items
   # GET /bid_items.json
+
+  def search
+    if params[:search].present?
+      @bid_items = BidItem.search(params[:search])
+    else
+      @bid_items = BidItem.all
+    end
+  end
+
   def index
     @bid_items = BidItem.all
   end
