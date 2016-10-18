@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+<<<<<<< HEAD
   name: MyString
   description: MyString
   price: 
@@ -9,3 +10,17 @@ two:
   name: MyString
   description: MyString
   price: 
+=======
+  item_name: MyItem1
+  starting_price: 100
+  fixed_price: 1000
+  seller_id: 1
+  description: MyString1
+
+two:
+  item_name: MyItem2
+  starting_price: 2000
+  fixed_price: 3000
+  seller_id: 2
+  description: MyString2
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712

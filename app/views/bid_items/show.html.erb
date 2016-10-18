@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%= image_tag @bid_item.image.url(:mdium) %>
 
 
@@ -16,6 +17,38 @@
 <p>
   <strong>Price:</strong>
   <%= @bid_item.price %>
+=======
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Item Name:</strong>
+  <%= @bid_item.item_name %>
+</p>
+
+<p>
+  <strong>Starting Price:</strong>
+  <%= @bid_item.starting_price %>
+</p>
+
+<p>
+  <strong>Highest Price:</strong>
+  <%= @bid_item.highest_price %>
+</p>
+
+<p>
+  <strong>Fixed Price:</strong>
+  <%= @bid_item.fixed_price %>
+</p>
+
+<p>
+  <strong>Seller:</strong>
+  <%= @bid_item.seller_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @bid_item.description %>
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
 </p>
 
 <%= link_to 'Edit', edit_bid_item_path(@bid_item) %> |

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <%= form_for bid_item, html: { multipart: true } do |f| %>
+=======
+<%= form_for(bid_item) do |f| %>
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
   <% if bid_item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(bid_item.errors.count, "error") %> prohibited this bid_item from being saved:</h2>
@@ -12,6 +16,7 @@
   <% end %>
 
   <div class="field">
+<<<<<<< HEAD
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
@@ -33,5 +38,33 @@
     <div class="field">
     <%= f.label :image %>
     <%= f.file_field :image %>
+=======
+    <%= f.label :item_name %>
+    <%= f.text_field :item_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :starting_price %>
+    <%= f.number_field :starting_price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fixed_price %>
+    <%= f.number_field :fixed_price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :seller_id %>
+    <%= f.number_field :seller_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
   </div>
 <% end %>

@@ -5,9 +5,18 @@
 <table>
   <thead>
     <tr>
+<<<<<<< HEAD
       <th>Name</th>
       <th>Description</th>
       <th>Price</th>
+=======
+      <th>Item Name</th>
+      <th>Starting Price</th>
+      <th>Highest Price</th>
+      <th>Fixed Price</th>
+      <th>Seller</th>
+      <th>Description</th>
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +24,18 @@
   <tbody>
     <% @bid_items.each do |bid_item| %>
       <tr>
+<<<<<<< HEAD
         <td><%= bid_item.name %></td>
         <td><%= bid_item.description %></td>
         <td><%= bid_item.price %></td>
+=======
+        <td><%= bid_item.item_name %></td>
+        <td><%= bid_item.starting_price %></td>
+        <td><%= bid_item.highest_price %></td>
+        <td><%= bid_item.fixed_price %></td>
+        <td><%= bid_item.seller_id %></td>
+        <td><%= bid_item.description %></td>
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
         <td><%= link_to 'Show', bid_item %></td>
         <td><%= link_to 'Edit', edit_bid_item_path(bid_item) %></td>
         <td><%= link_to 'Destroy', bid_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>

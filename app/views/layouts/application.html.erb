@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+<<<<<<< HEAD
     <title>MovieReview</title>
     <%= csrf_meta_tags %>
 
@@ -17,5 +18,17 @@
     <%= link_to "Login", new_user_session_path %>
     <%= link_to "Logout", destroy_user_session_path, :method => :delete%>
     <%= yield %>
+=======
+    <title><%= full_title(yield(:title)) %></title>
+    <%= render 'layouts/rails_default' %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
+    <div class="container">
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+    </div>
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
   </body>
 </html>

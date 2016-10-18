@@ -16,9 +16,16 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+<<<<<<< HEAD
 
 # Ignore Byebug command history file.
 .byebug_history
 
 /.idea/*
 /public/*
+=======
+/.idea/*
+
+# Ignore Byebug command history file.
+.byebug_history
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712

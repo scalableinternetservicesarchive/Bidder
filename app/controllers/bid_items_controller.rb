@@ -1,6 +1,10 @@
 class BidItemsController < ApplicationController
   before_action :set_bid_item, only: [:show, :edit, :update, :destroy]
+<<<<<<< HEAD
   before_action :authenticate_user!, except: [:index, :show]
+=======
+
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
   # GET /bid_items
   # GET /bid_items.json
   def index
@@ -13,8 +17,13 @@ class BidItemsController < ApplicationController
   end
 
   # GET /bid_items/new
+<<<<<<< HEAD
   def new 
     @bid_item = current_user.bid_items.build
+=======
+  def new
+    @bid_item = BidItem.new
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
   end
 
   # GET /bid_items/1/edit
@@ -24,7 +33,11 @@ class BidItemsController < ApplicationController
   # POST /bid_items
   # POST /bid_items.json
   def create
+<<<<<<< HEAD
     @bid_item = current_user.bid_items.build(bid_item_params)
+=======
+    @bid_item = BidItem.new(bid_item_params)
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
 
     respond_to do |format|
       if @bid_item.save
@@ -42,8 +55,11 @@ class BidItemsController < ApplicationController
   def update
     respond_to do |format|
       if @bid_item.update(bid_item_params)
+<<<<<<< HEAD
         @bid_item.bidder_id = current_user.id
         @bid_item.save
+=======
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
         format.html { redirect_to @bid_item, notice: 'Bid item was successfully updated.' }
         format.json { render :show, status: :ok, location: @bid_item }
       else
@@ -71,6 +87,10 @@ class BidItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_item_params
+<<<<<<< HEAD
       params.require(:bid_item).permit(:name, :description, :price, :image)
+=======
+      params.require(:bid_item).permit(:item_name, :starting_price, :highest_price, :fixed_price, :seller_id, :highest_price_bidder_id, :description)
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
     end
 end

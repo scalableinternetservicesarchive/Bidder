@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/usr/bin/env ruby2.2
+=======
+#!/usr/bin/env ruby
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
 require 'pathname'
 require 'fileutils'
 include FileUtils
