@@ -2,9 +2,9 @@
 
 ## Project description:
 
-The goal for this long term project “Bidder” is to understand the principles of the server and ruby on rail server design and implementation. 
+The goal for this long term project ï¿½Bidderï¿½ is to understand the principles of the server and ruby on rail server design and implementation. 
 
-Project “Bidder” is an online selling and bidding system. It has the following features in the future:
+Project ï¿½Bidderï¿½ is an online selling and bidding system. It has the following features in the future:
 
 * Bid
 

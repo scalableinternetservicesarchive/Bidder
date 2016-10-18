@@ -17,7 +17,11 @@ class BidItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create bid_item" do
     assert_difference('BidItem.count') do
+<<<<<<< HEAD
       post bid_items_url, params: { bid_item: { bidder_id: @bid_item.bidder_id, description: @bid_item.description, name: @bid_item.name, price: @bid_item.price, saler_id: @bid_item.saler_id } }
+=======
+      post bid_items_url, params: { bid_item: { description: @bid_item.description, item_name: @bid_item.item_name, starting_price: @bid_item.starting_price, fixed_price: @bid_item.fixed_price, seller_id: @bid_item.seller_id } }
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
     end
 
     assert_redirected_to bid_item_url(BidItem.last)
@@ -34,7 +38,11 @@ class BidItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update bid_item" do
+<<<<<<< HEAD
     patch bid_item_url(@bid_item), params: { bid_item: { bidder_id: @bid_item.bidder_id, description: @bid_item.description, name: @bid_item.name, price: @bid_item.price, saler_id: @bid_item.saler_id } }
+=======
+    patch bid_item_url(@bid_item), params: { bid_item: { description: @bid_item.description, item_name: @bid_item.item_name, starting_price: @bid_item.starting_price, fixed_price: @bid_item.fixed_price, seller_id: @bid_item.seller_id } }
+>>>>>>> 5a9fa76ff5c2e2b1196661b93e8303b0d7ada712
     assert_redirected_to bid_item_url(@bid_item)
   end
 

@@ -34,6 +34,7 @@ class BidItemsController < ApplicationController
   # POST /bid_items.json
   def create
     @bid_item = current_user.bid_items.build(bid_item_params)
+    @bid_item.seller_id = current_user.id
     respond_to do |format|
       if @bid_item.save
         format.html { redirect_to @bid_item, notice: 'Bid item was successfully created.' }
@@ -77,6 +78,7 @@ class BidItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_item_params
-      params.require(:bid_item).permit(:name, :price, :description)
+
+      params.require(:bid_item).permit(:item_name, :starting_price, :highest_price, :fixed_price, :highest_price_bidder_id, :description)
     end
 end
