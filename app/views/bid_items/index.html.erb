@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Item Name</th>
       <th>Starting Price</th>
       <th>Highest Price</th>
@@ -18,6 +19,7 @@
   <tbody>
     <% @bid_items.each do |bid_item| %>
       <tr>
+        <td><%= image_tag bid_item.image.url(:medium) %></td>
         <td><%= bid_item.item_name %></td>
         <td><%= bid_item.starting_price %></td>
         <td><%= bid_item.highest_price %></td>
