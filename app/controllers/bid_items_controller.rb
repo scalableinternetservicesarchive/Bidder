@@ -6,7 +6,14 @@ class BidItemsController < ApplicationController
 
   def search
     if params[:search].present?
-      @bid_items = BidItem.search(params[:search])
+      # This is for the elastic search
+      #@bid_items = BidItem.search(params[:search])
+
+      # Those are Ruby SQL queries
+      # This is to search item_name
+      #@bid_items = BidItem.where(:item_name => params[:search])
+      # This is to search price larger than
+      @bid_items = BidItem.where("starting_price > ?", params[:search])
     else
       @bid_items = BidItem.all
     end
@@ -79,6 +86,6 @@ class BidItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_item_params
 
-      params.require(:bid_item).permit(:item_name, :starting_price, :highest_price, :fixed_price, :highest_price_bidder_id, :description)
+      params.require(:bid_item).permit(:item_name, :starting_price, :highest_price, :fixed_price, :highest_price_bidder_id, :description, :image)
     end
 end

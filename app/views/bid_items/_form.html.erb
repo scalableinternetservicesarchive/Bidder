@@ -1,10 +1,10 @@
-<%= form_for(bid_item) do |f| %>
-  <% if bid_item.errors.any? %>
+<%= form_for @bid_item, html: { multipart: true } do |f| %>
+  <% if @bid_item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(bid_item.errors.count, "error") %> prohibited this bid_item from being saved:</h2>
 
       <ul>
-      <% bid_item.errors.full_messages.each do |message| %>
+      <% @bid_item.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -27,8 +27,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :seller_id %>
-    <%= f.number_field :seller_id %>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
   </div>
 
   <div class="field">

@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Item Name:</strong>
@@ -9,7 +8,7 @@
   <strong>Starting Price:</strong>
   <%= @bid_item.starting_price %>
 </p>
-
+<%= image_tag @bid_item.image.url(:medium) %>
 <p>
   <strong>Highest Price:</strong>
   <%= @bid_item.highest_price %>

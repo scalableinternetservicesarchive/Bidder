@@ -45,3 +45,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise', '~> 4.2'
 gem 'searchkick', '~> 1.3', '>= 1.3.6'
+gem 'paperclip', '~> 5.1'
