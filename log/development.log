@@ -6337,3 +6337,15 @@ Processing by BidItemsController#index as HTML
 Completed 200 OK in 44ms (Views: 40.7ms | ActiveRecord: 0.5ms)
 
 
+Started GET "/bid_items" for 127.0.0.1 at 2016-10-18 18:22:21 -0700
+Processing by BidItemsController#index as HTML
+  Rendering bid_items/index.html.erb within layouts/application
+  [1m[36mBidItem Load (0.4ms)[0m  [1m[34mSELECT "bid_items".* FROM "bid_items"[0m
+  Rendered bid_items/index.html.erb within layouts/application (7.4ms)
+  Rendered layouts/_rails_default.html.erb (28.8ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 48ms (Views: 45.7ms | ActiveRecord: 0.4ms)
+
+
