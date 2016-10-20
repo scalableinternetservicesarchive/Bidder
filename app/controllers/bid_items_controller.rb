@@ -1,5 +1,7 @@
 class BidItemsController < ApplicationController
   before_action :set_bid_item, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+
 
   # GET /bid_items
   # GET /bid_items.json
@@ -15,6 +17,7 @@ class BidItemsController < ApplicationController
   # GET /bid_items/new
   def new
     @bid_item = BidItem.new
+    @bid_item.seller_id = current_user.id
   end
 
   # GET /bid_items/1/edit
@@ -25,7 +28,7 @@ class BidItemsController < ApplicationController
   # POST /bid_items.json
   def create
     @bid_item = BidItem.new(bid_item_params)
-
+    @bid_item.seller_id = current_user.id
     respond_to do |format|
       if @bid_item.save
         format.html { redirect_to @bid_item, notice: 'Bid item was successfully created.' }
@@ -40,10 +43,11 @@ class BidItemsController < ApplicationController
   # PATCH/PUT /bid_items/1
   # PATCH/PUT /bid_items/1.json
   def update
+    @bid_item.seller_id = current_user.id
     respond_to do |format|
       if @bid_item.update(bid_item_params)
         format.html { redirect_to @bid_item, notice: 'Bid item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @bid_item }
+        format.json { render :show, status: :updated, location: @bid_item }
       else
         format.html { render :edit }
         format.json { render json: @bid_item.errors, status: :unprocessable_entity }
@@ -69,6 +73,6 @@ class BidItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_item_params
-      params.require(:bid_item).permit(:item_name, :starting_price, :highest_price, :fixed_price, :seller_id, :highest_price_bidder_id, :description, :image)
+      params.require(:bid_item).permit(:item_name, :starting_price, :highest_price, :fixed_price, :highest_price_bidder_id, :description, :image)
     end
 end
