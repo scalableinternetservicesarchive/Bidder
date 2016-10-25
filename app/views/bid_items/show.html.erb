@@ -29,6 +29,7 @@
   <strong>Description:</strong>
   <%= @bid_item.description %>
 </p>
-
-<%= link_to 'Edit', edit_bid_item_path(@bid_item) %> |
+<% if user_signed_in? %>
+  <%= link_to 'Edit', edit_bid_item_path(@bid_item) %> |
+<% end %>
 <%= link_to 'Back', bid_items_path %>
