@@ -7,6 +7,7 @@ class BidItemsController < ApplicationController
   # GET /bid_items.json
   def index
     @bid_items = BidItem.all
+    bid_amount = params['bid_amount']
   end
 
   # GET /bid_items/1
