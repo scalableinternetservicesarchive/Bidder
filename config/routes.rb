@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
+  devise_for :users
+  resources :bid_items do
+    member do
+      get 'bid'
+    end
+  end
   devise_for :users
   resources :bid_items do
     collection do
