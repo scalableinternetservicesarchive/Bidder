@@ -1,6 +1,5 @@
 class BidItem < ApplicationRecord
-  searchkick
-  belongs_to :user
+  #searchkick
 	validates :item_name, :presence => true
 
 	has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
