@@ -7,7 +7,6 @@ class BidItemsController < ApplicationController
   # GET /bid_items.json
   def index
     @bid_items = BidItem.all
-    bid_amount = params['bid_amount']
   end
 
   # GET /bid_items/1
@@ -55,6 +54,12 @@ class BidItemsController < ApplicationController
       end
     end
   end
+
+
+  def bid
+    set_bid_item
+  end
+
 
   # DELETE /bid_items/1
   # DELETE /bid_items/1.json

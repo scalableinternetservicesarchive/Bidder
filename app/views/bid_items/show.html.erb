@@ -30,6 +30,10 @@
   <%= @bid_item.description %>
 </p>
 <% if user_signed_in? %>
-  <%= link_to 'Edit', edit_bid_item_path(@bid_item) %> |
+    <% if @bid_item.seller_id == current_user.id %>
+        <%= link_to 'Edit', edit_bid_item_path(@bid_item) %> |
+    <% else %>
+        <%= link_to 'Bid', bid_bid_item_path(@bid_item) %> |
+    <% end %>
 <% end %>
 <%= link_to 'Back', bid_items_path %>
