@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_communities
+  resources :communities
   get 'users/new'
 
   devise_for :users
@@ -10,6 +12,10 @@ Rails.application.routes.draw do
     member do
       get 'bid'
     end
+  end
+
+  resources :communities do
+    post 'join', :on => :member
   end
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
