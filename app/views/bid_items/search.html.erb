@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bid Items</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Item Name</th>
+    <th>Starting Price</th>
+    <th>Highest Price</th>
+    <th>Fixed Price</th>
+    <th>Seller</th>
+    <th>Description</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @bid_items.each do |bid_item| %>
+      <tr>
+        <td><%= bid_item.item_name %></td>
+        <td><%= bid_item.starting_price %></td>
+        <td><%= bid_item.highest_price %></td>
+        <td><%= bid_item.fixed_price %></td>
+        <td><%= bid_item.seller_id %></td>
+        <td><%= bid_item.description %></td>
+        <td><%= link_to 'Show', bid_item %></td>
+        <td><%= link_to 'Edit', edit_bid_item_path(bid_item) %></td>
+        <td><%= link_to 'Destroy', bid_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bid Item', new_bid_item_path %>

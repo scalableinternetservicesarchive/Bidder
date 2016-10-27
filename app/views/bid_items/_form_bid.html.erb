@@ -1,0 +1,22 @@
+<%= form_for @bid_item, html: { multipart: true } do |f| %>
+  <% if @bid_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bid_item.errors.count, "error") %> prohibited this bid_item from being saved:</h2>
+
+      <ul>
+      <% @bid_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :highest_price %>
+    <%= f.text_field :highest_price %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
