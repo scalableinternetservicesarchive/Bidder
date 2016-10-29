@@ -5,6 +5,22 @@ class BidItemsController < ApplicationController
 
   # GET /bid_items
   # GET /bid_items.json
+
+  def search
+    if params[:search].present?
+      # This is for the elastic search
+      #@bid_items = BidItem.search(params[:search])
+
+      # Those are Ruby SQL queries
+      # This is to search item_name
+      #@bid_items = BidItem.where(:item_name => params[:search])
+      # This is to search price larger than
+      @bid_items = BidItem.where("starting_price > ?", params[:search])
+    else
+      @bid_items = BidItem.all
+    end
+  end
+
   def index
     @bid_items = BidItem.all
     bid_amount = params['bid_amount']
@@ -57,6 +73,12 @@ class BidItemsController < ApplicationController
       end
     end
   end
+
+
+  def bid
+    set_bid_item
+  end
+
 
   # DELETE /bid_items/1
   # DELETE /bid_items/1.json

@@ -39,6 +39,20 @@ ActiveRecord::Schema.define(version: 20161029204434) do
     t.index ["user_id"], name: "index_bid_records_on_user_id"
   end
 
+  create_table "communities", force: :cascade do |t|
+    t.string   "name"
+    t.string   "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_communities", force: :cascade do |t|
+    t.integer  "community_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
