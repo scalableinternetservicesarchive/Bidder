@@ -10,22 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029050738) do
+ActiveRecord::Schema.define(version: 20161029204434) do
 
   create_table "bid_items", force: :cascade do |t|
     t.string   "item_name"
     t.integer  "starting_price"
     t.integer  "seller_id"
     t.string   "description"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "fixed_price"
-    t.integer  "highest_price"
-    t.integer  "highest_price_bidder_id"
+    t.integer  "current_price"
+    t.integer  "current_bidder_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "buyer_id"
   end
 
   create_table "bid_records", force: :cascade do |t|

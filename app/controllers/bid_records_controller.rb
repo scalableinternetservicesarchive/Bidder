@@ -10,11 +10,17 @@ class BidRecordsController < ApplicationController
 		@bid_record = BidRecord.new(record_params)
 		@bid_record.user_id = current_user.id
 		@bid_record.bid_item_id = @bid_item.id
-
-		if @bid_record.save
-			flash[:success] = "Bidding record added!"
+		respond_to do |format|
+			if @bid_record.price < @bid_item.current_price
+				format.html {redirect_to @bid_item, notice: 'Your price must be greater than current price.' }
+			else
+				if @bid_record.save
+					@bid_item.update(current_price: @bid_record.price)
+					format.html {redirect_to @bid_item, notice: 'Bid item was successfully created.' }
+				end
+			end
 		end
-		redirect_to @bid_item
+		
 	end
 
 
