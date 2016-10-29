@@ -13,6 +13,7 @@ class BidItemsController < ApplicationController
   # GET /bid_items/1
   # GET /bid_items/1.json
   def show
+    @bid_records = BidRecord.where(bid_item_id: @bid_item).order("created_at DESC")
   end
 
   # GET /bid_items/new
