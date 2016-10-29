@@ -14,6 +14,14 @@ class CommunitiesController < ApplicationController
     @community.user_communities.each do |uc|
       @users << User.find(uc.user_id)
     end
+    @items = []
+    @users.each do |user|
+      @item = BidItem.where(:seller_id => user.id)
+      @item.each do |item|
+        @items << item
+      end
+    end
+
   end
 
   # GET /communities/new

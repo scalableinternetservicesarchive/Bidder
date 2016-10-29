@@ -32,4 +32,12 @@
       </tr>
   <% end %>
   </tbody>
+  <tbody>
+  <% @items.each do |user| %>
+      <tr>
+        <td><%= user.item_name %></td>
+
+      </tr>
+  <% end %>
+  </tbody>
 </table>

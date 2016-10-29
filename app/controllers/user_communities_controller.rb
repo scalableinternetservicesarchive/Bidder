@@ -64,12 +64,12 @@ class UserCommunitiesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_community
+    def set_user_community
       @community = Community.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    #def user_community_params
-    #  params.require(:user_community).permit(:community_id, :user_id)
-    #end
+    def user_community_params
+      params.require(:user_community).permit(:community_id, :user_id)
+    end
 end

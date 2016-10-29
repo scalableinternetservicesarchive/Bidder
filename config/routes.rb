@@ -4,6 +4,13 @@ Rails.application.routes.draw do
   get 'users/new'
 
   devise_for :users
+  resource :users do
+    member do
+      get 'show'
+    end
+  end
+
+
   resources :bid_items do
     collection do
       get 'search'
