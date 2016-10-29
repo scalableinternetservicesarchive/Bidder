@@ -23,7 +23,6 @@ class BidItemsController < ApplicationController
 
   def index
     @bid_items = BidItem.all
-    bid_amount = params['bid_amount']
   end
 
   # GET /bid_items/1
