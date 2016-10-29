@@ -23,11 +23,13 @@ class BidItemsController < ApplicationController
 
   def index
     @bid_items = BidItem.all
+    bid_amount = params['bid_amount']
   end
 
   # GET /bid_items/1
   # GET /bid_items/1.json
   def show
+    @bid_records = BidRecord.where(bid_item_id: @bid_item).order("created_at DESC")
   end
 
   # GET /bid_items/new
@@ -45,6 +47,7 @@ class BidItemsController < ApplicationController
   def create
     @bid_item = BidItem.new(bid_item_params)
     @bid_item.seller_id = current_user.id
+    @bid_item.current_price = @bid_item.starting_price
     respond_to do |format|
       if @bid_item.save
         format.html { redirect_to @bid_item, notice: 'Bid item was successfully created.' }
@@ -94,6 +97,6 @@ class BidItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_item_params
-      params.require(:bid_item).permit(:item_name, :starting_price, :highest_price, :fixed_price, :highest_price_bidder_id, :description, :image)
+      params.require(:bid_item).permit(:item_name, :starting_price, :current_price, :fixed_price, :current_bidder_id, :description, :image)
     end
 end

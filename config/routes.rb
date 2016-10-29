@@ -4,27 +4,21 @@ Rails.application.routes.draw do
   get 'users/new'
 
   devise_for :users
-  resource :users do
-    member do
-      get 'show'
-    end
-  end
-
-
   resources :bid_items do
+  	resources :bid_records
     collection do
       get 'search'
     end
-
-    member do
-      get 'bid'
-    end
   end
+
+  resources :users do
+  	resources :bid_records
+  end
+
 
   resources :communities do
     post 'join', :on => :member
   end
-  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'static_pages#home'
   get '/help', to: 'static_pages#help'

@@ -22,7 +22,7 @@
             <tr>
               <td><%= bid_item.item_name %> | </td>
               <td><%= bid_item.starting_price %> | </td>
-              <td><%= bid_item.highest_price %></td>
+              <td><%= bid_item.current_price %></td>
             </tr>
             <tr>
               <td><%= link_to 'View Detail | ', bid_item %></td>
@@ -30,7 +30,8 @@
                 <% if bid_item.seller_id == current_user.id %>
                   <td><%= link_to 'Edit | ', edit_bid_item_path(bid_item) %></td>
                 <% else %>
-                      <td><%= link_to 'Bid | ', bid_bid_item_path(bid_item)%></td>
+                  <%= text_field_tag :bid_amount %>
+                  <%= submit_tag "Bid" %>
                 <% end %>
                 <td><%= link_to 'Destroy', bid_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               <% end %>

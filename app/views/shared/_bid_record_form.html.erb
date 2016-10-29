@@ -1,0 +1,7 @@
+<%= form_for([@bid_item, @bid_item.bid_records.build] , html: { multipart: true }) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.number_field :price, placeholder: "Place new bid..." %>
+  </div>
+  <%= f.submit "Bid", class: "btn btn-primary" %>
+<% end %>
