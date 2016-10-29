@@ -1,34 +1,70 @@
-<%= image_tag @bid_item.image.url(:medium) %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
 
-<p>
-  <strong>Item Name:</strong>
-  <%= @bid_item.item_name %>
-</p>
+      <div class="col-md-4">
+        <%= image_tag @bid_item.image.url(:medium) %>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><strong>Item Name:</strong></td>
+                <td><%= @bid_item.item_name %></td>
+              </tr>
+              <tr>
+                <td><strong>Seller:</strong></td>
+                <td><%= @bid_item.seller_id %></td> 
+              </tr>
+              <tr>
+                <td><strong>Description:</strong></td>
+                <td><%= @bid_item.description %></td>
+              </tr>
+              <tr>
+                <td><strong>Starting Price:</strong></td>
+                <td><%= @bid_item.starting_price %></td>
+              </tr>
+              <tr>
+                <td><strong>Fixed Price:</strong></td>
+                <td><%= @bid_item.fixed_price %></td>
+              </tr>
+              <tr>
+                <td><strong>Highest Price:</strong></td>
+                <td><%= @bid_item.current_price %></td>
+              </tr>
+            </tbody>
+          </table>
+          <% if user_signed_in? %>
+            <section class="bid_form">
+                <%= render 'shared/bid_record_form' %>
+            </section>
+          <% end %>
+          <% link_to 'Back', bid_items_path %>
+        </div>
+      </div>
 
-<p>
-  <strong>Starting Price:</strong>
-  <%= @bid_item.starting_price %>
-</p>
+      <div class="col-md-7 col-md-offset-1">
+        <% if @bid_records.blank? %>
+          <h3>No bidding records just yet, would you like to add the first!</h3>
+          <% if user_signed_in? %>
+            <section class="bid_form">
+                <%= render 'shared/bid_record_form' %>
+            </section>
+          <% end %>
+        <% else %>
+          <em><%= "#{@bid_records.length} bidding records" %></em>
+          <% @bid_records.each do |record| %>
+            <div class="bid_record">
+              <tr>
+                <td><%= record.created_at %>  </td>
+                <td><%= record.user_id %>  </td>
+                <td><%= record.price %>  </td>
+              </tr>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Highest Price:</strong>
-  <%= @bid_item.highest_price %>
-</p>
 
-<p>
-  <strong>Fixed Price:</strong>
-  <%= @bid_item.fixed_price %>
-</p>
-
-<p>
-  <strong>Seller:</strong>
-  <%= @bid_item.seller_id %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @bid_item.description %>
-</p>
-
-<%= link_to 'Edit', edit_bid_item_path(@bid_item) %> |
-<%= link_to 'Back', bid_items_path %>

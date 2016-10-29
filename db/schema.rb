@@ -10,22 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019032329) do
+ActiveRecord::Schema.define(version: 20161029204434) do
 
   create_table "bid_items", force: :cascade do |t|
     t.string   "item_name"
     t.integer  "starting_price"
     t.integer  "seller_id"
     t.string   "description"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "fixed_price"
-    t.integer  "highest_price"
-    t.integer  "highest_price_bidder_id"
+    t.integer  "current_price"
+    t.integer  "current_bidder_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "buyer_id"
+  end
+
+  create_table "bid_records", force: :cascade do |t|
+    t.integer  "price"
+    t.integer  "user_id"
+    t.integer  "bid_item_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["bid_item_id"], name: "index_bid_records_on_bid_item_id"
+    t.index ["user_id"], name: "index_bid_records_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
