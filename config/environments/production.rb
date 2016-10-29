@@ -83,4 +83,5 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  set :linked_dirs, fetch(:linked_dirs, []).push('public/system')
 end
