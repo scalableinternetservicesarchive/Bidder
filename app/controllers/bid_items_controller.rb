@@ -62,6 +62,7 @@ class BidItemsController < ApplicationController
   # PATCH/PUT /bid_items/1
   # PATCH/PUT /bid_items/1.json
   def update
+    @bid_item.seller_id = current_user.id
     respond_to do |format|
       if @bid_item.update(bid_item_params)
         format.html { redirect_to @bid_item, notice: 'Bid item was successfully updated.' }

@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :user_communities
   resources :communities
-  get 'users/new'
 
   devise_for :users
   resources :bid_items do
