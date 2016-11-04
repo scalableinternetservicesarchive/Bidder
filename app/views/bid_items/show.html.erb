@@ -1,7 +1,13 @@
 <div class="panel panel-default">
+  <% if user_signed_in? %>
+    <% if @bid_item.seller_id == current_user.id %>
+      <h2> My own item</h2>
+    <% elsif @bid_item.buyer_id == current_user.id %>
+      <h2> I bought the item </h2>
+    <% end %>
+  <% end %>
   <div class="panel-body">
     <div class="row">
-
       <div class="col-md-4">
         <%= image_tag @bid_item.image.url(:medium) %>
         <div class="table-responsive">
@@ -28,7 +34,7 @@
                 <td><%= @bid_item.fixed_price %></td>
               </tr>
               <tr>
-                <td><strong>Highest Price:</strong></td>
+                <td><strong>Current Price:</strong></td>
                 <td><%= @bid_item.current_price %></td>
               </tr>
             </tbody>
@@ -41,12 +47,15 @@
                 <section class="bid_form">
                     <%= render 'shared/bid_record_form' %>
                 </section>
+              <% else %>
+                <td><%= link_to 'Edit | ', edit_bid_item_path(@bid_item) %></td>
+                <td><%= link_to 'Destroy |', @bid_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               <% end %>
             <% else %>
               <td>Please sign in to bid</td>
             <% end %>
           <% end %> 
-          <% link_to 'Back', bid_items_path %>
+          <%= link_to 'Back', bid_items_path %>
         </div>
       </div>
 
@@ -55,32 +64,15 @@
         <% if @bid_records.blank? %>
           <h3>No bidding record now</h3>
         <% else %>
-          <% if user_signed_in? %>
-            <% if @bid_item.seller_id != current_user.id %>
-              <em><%= "#{@bid_records.length} bidding records" %></em>
-              <% @bid_records.each do |record| %>
-                <div class="bid_record">
-                  <tr>
-                    <td><%= record.created_at %>  </td>
-                    <td><%= record.user_id %>  </td>
-                    <td><%= record.price %>  </td>
-                  </tr>
-                </div>
-              <% end %>
-            <% else %>
-              <h3> My own item </h3>
-            <% end %>
-          <% else %>
-            <em><%= "#{@bid_records.length} bidding records" %></em>
-            <% @bid_records.each do |record| %>
-              <div class="bid_record">
-                <tr>
-                  <td><%= record.created_at %>  </td>
-                  <td><%= record.user_id %>  </td>
-                  <td><%= record.price %>  </td>
-                </tr>
-              </div>
-            <% end %>
+          <em><%= "#{@bid_records.length} bidding records" %></em>
+          <% @bid_records.each do |record| %>
+            <div class="bid_record">
+              <tr>
+                <td><%= record.created_at %>  </td>
+                <td><%= record.user_id %>  </td>
+                <td><%= record.price %>  </td>
+              </tr>
+            </div>
           <% end %>
         <% end %>
       </div>
