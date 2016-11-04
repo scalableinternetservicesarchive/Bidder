@@ -1,46 +1,70 @@
 <h1>Profile</h1>
-<% if user_signed_in? %>
-  <p>I am <%= current_user.email %></p>
-  
-  <p> My selling item: </p> 
-  <table class="history">
-  	<thead>
-  		<th>
-        Item Name
-      </th>
-      <th>
-        Current Price
-      </th>
-  	</thead>
-	  <tbody>
-	  <% current_user.sell_items.each do |item| %>
-	    <tr>
-	    	<td><%= link_to item.item_name, bid_item_path(item) %></td>
-	    	<td><%= item.current_price %></td>
-	  	</tr>
-	  <% end %>
-    </tbody>
-  </table>
-  <p> My bidding history </p>
-  <table class="history">
-  	<thead>
-  		<th>
-        Item ID
-      </th>
-      <th>
-        Bid Time
-      </th>
-  	</thead>	
-  	<tbody>
-  		<% @bid_records.each do |record| %>
-  			<% bid_item_tmp = BidItem.find(record.bid_item_id) %>
-      <tr>
-        <td><%= link_to bid_item_tmp.item_name, bid_item_path(bid_item_tmp) %>  </td>
-        <td><%= record.created_at %>  </td>
-      </tr> 
-      <% end %>
-    </tbody> 
- </table>
-<% else %>
-  <p>[Error]</p>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-body">
+  <% if user_signed_in? %>
+    <p>I am <%= current_user.email %></p>
+    <div class="col-md-4">
+      <table width="300" border="1" style="float:left;">
+        <caption>My selling item</caption>
+          <thead>
+              <th>
+            Item Name
+          </th>
+          <th>
+            Current Price
+          </th>
+          </thead>
+          <tbody>
+          <% current_user.sell_items.each do |item| %>
+            <tr>
+                <td><%= link_to item.item_name, bid_item_path(item) %></td>
+                <td><%= item.current_price %></td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-4">
+      <table width="300" border="1" style="float:left;">
+        <caption>My bidding history</caption>
+          <thead>
+              <th>
+            Item ID
+          </th>
+          <th>
+            Bid Time
+          </th>
+          </thead>    
+          <tbody>
+              <% @bid_records.each do |record| %>
+                  <% bid_item_tmp = BidItem.find(record.bid_item_id) %>
+          <tr>
+            <td><%= link_to bid_item_tmp.item_name, bid_item_path(bid_item_tmp) %></td>
+            <td><%= record.created_at %></td>
+          </tr> 
+          <% end %>
+        </tbody> 
+      </table>
+    </div>
+
+    <div class="col-md-4">
+      <table width="300" border="1" style="float:left;">
+        <caption>The items I bought</caption>
+        <thead>
+          <th>
+            Item ID
+          </th>
+        </thead>  
+        <tbody>
+        <% current_user.buy_items.each do |item| %>
+          <tr>
+            <td><%= link_to item.item_name, bid_item_path(item) %></td>
+          </tr>
+        <% end %>
+        </tbody> 
+      </table>
+    </div>
+  <% end %>
+</div>
+</div>
