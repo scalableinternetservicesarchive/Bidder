@@ -26,14 +26,18 @@
             </tr>
             <tr>
               <td><%= link_to 'View Detail | ', bid_item %></td>
-              <% if user_signed_in? %>
-                <% if bid_item.seller_id == current_user.id %>
-                  <td><%= link_to 'Edit | ', edit_bid_item_path(bid_item) %></td>
-                <% else %>
-                  <%= text_field_tag :bid_amount %>
-                  <%= submit_tag "Bid" %>
+              <% if bid_item.buyer_id? %>
+                <td>SOLD OUT</td>
+              <% else %>  
+                <% if user_signed_in? %>
+                  <% if bid_item.seller_id == current_user.id %>
+                    <td><%= link_to 'Edit | ', edit_bid_item_path(bid_item) %></td>
+                  <% else %>
+                    <%= text_field_tag :bid_amount %>
+                    <%= submit_tag "Bid" %>
+                  <% end %>
+                  <td><%= link_to 'Destroy', bid_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 <% end %>
-                <td><%= link_to 'Destroy', bid_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               <% end %>
             </tr>
           </tbody>

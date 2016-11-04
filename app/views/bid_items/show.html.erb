@@ -33,11 +33,17 @@
               </tr>
             </tbody>
           </table>
-          <% if user_signed_in? %>
-            <section class="bid_form">
-                <%= render 'shared/bid_record_form' %>
-            </section>
-          <% end %>
+          <% if @bid_item.buyer_id? %>
+            <td>SOLD OUT</td>
+          <% else %>
+            <% if user_signed_in? %>
+              <section class="bid_form">
+                  <%= render 'shared/bid_record_form' %>
+              </section>
+            <% else %>
+              <td>Please sign in to bid</td>
+            <% end %>
+          <% end %> 
           <% link_to 'Back', bid_items_path %>
         </div>
       </div>
