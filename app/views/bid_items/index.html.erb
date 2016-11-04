@@ -18,29 +18,32 @@
       <div class="thumbnail">
         <%= link_to (image_tag bid_item.image.url(:medium)), bid_item %>
         <table>
+          <thead>
+            <font size="+1"><tr><%= bid_item.item_name %></tr></font>
+          </thead>
           <tbody>
             <tr>
-              <td><%= bid_item.item_name %> | </td>
-              <td><%= bid_item.starting_price %> | </td>
-              <td><%= bid_item.current_price %></td>
+              <td>Current Price: <%= bid_item.current_price %></td>
             </tr>
             <tr>
-              <td><%= link_to 'View Detail | ', bid_item %></td>
+              <td>Fixed Price: <%= bid_item.fixed_price %></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td><%= link_to 'View Detail', bid_item %></td>
               <% if bid_item.buyer_id? %>
-                <td>SOLD OUT</td>
+                <td><b><font color="red">SOLD OUT</font></b></td>
               <% else %>  
                 <% if user_signed_in? %>
                   <% if bid_item.seller_id == current_user.id %>
                     <td><%= link_to 'Edit | ', edit_bid_item_path(bid_item) %></td>
-                  <% else %>
-                    <%= text_field_tag :bid_amount %>
-                    <%= submit_tag "Bid" %>
+                    <td><%= link_to 'Destroy', bid_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   <% end %>
-                  <td><%= link_to 'Destroy', bid_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 <% end %>
               <% end %>
             </tr>
-          </tbody>
+          </tfoot>
         </table>  
       </div>
     </div>
