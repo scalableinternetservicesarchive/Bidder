@@ -27,6 +27,7 @@ class BidItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show bid_item" do
+    sign_in users(:one)
     get bid_item_path(@bid_item)
     assert_response :success
   end
