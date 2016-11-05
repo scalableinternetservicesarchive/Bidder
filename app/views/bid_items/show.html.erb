@@ -39,27 +39,33 @@
               </tr>
             </tbody>
           </table>
-          <% if @bid_item.buyer_id? %>
-            <td>SOLD OUT</td>
-          <% else %>
-            <% if user_signed_in? %>
-              <% if @bid_item.seller_id != current_user.id %>
-                <section class="bid_form">
-                    <%= render 'shared/bid_record_form' %>
-                </section>
-              <% else %>
-                <td><%= link_to 'Edit | ', edit_bid_item_path(@bid_item) %></td>
-                <td><%= link_to 'Destroy |', @bid_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <% end %>
-            <% else %>
-              <td>Please sign in to bid</td>
-            <% end %>
-          <% end %> 
-          <%= link_to 'Back', bid_items_path %>
         </div>
+        <p>
+        <% if @bid_item.buyer_id? %>
+          SOLD OUT
+        <% elsif @is_timeout %>
+          TIMEOUT
+        <% else %>
+          <% if user_signed_in? %>
+            <% if @bid_item.seller_id != current_user.id %>
+              <section class="bid_form">
+                  <%= render 'shared/bid_record_form' %>
+              </section>
+            <% else %>
+              <%= link_to 'Edit | ', edit_bid_item_path(@bid_item) %>
+              <%= link_to 'Destroy |', @bid_item, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          <% else %>
+            Please sign in to bid
+          <% end %>
+        <% end %> 
+        </p>
+        <p>
+          <%= link_to 'Back', bid_items_path %>
+        </p>
       </div>
 
-      <div class="col-md-7 col-md-offset-1">
+      <div class="col-md-4 col-md-offset-1">
         
         <% if @bid_records.blank? %>
           <h3>No bidding record now</h3>
@@ -74,6 +80,13 @@
               </tr>
             </div>
           <% end %>
+        <% end %>
+      </div>
+
+      <div class="col-md-3">
+        <p><%="Created at #{time_ago_in_words(@bid_item.created_at)} ago"%></p>
+        <% if @is_timeout %>
+          <p><%= "TIMEOUT (#{@timeout} minutes) " %></p>
         <% end %>
       </div>
     </div>

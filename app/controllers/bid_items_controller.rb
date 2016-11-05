@@ -29,7 +29,9 @@ class BidItemsController < ApplicationController
   # GET /bid_items/1.json
   def show
     @bid_records = BidRecord.where(bid_item_id: @bid_item).order("created_at DESC")
-    # @current_user_id = current_user.id
+    @timeout = 35
+    @is_timeout = @bid_item.created_at < @timeout.minutes.ago
+    @bid_item.update(buyer_id: current_bidder_id.id) if @is_timeout && !@bid_item.buyer_id?
   end
 
   # GET /bid_items/new
