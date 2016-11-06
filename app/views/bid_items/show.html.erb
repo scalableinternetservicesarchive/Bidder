@@ -87,6 +87,8 @@
         <p><%="Created at #{time_ago_in_words(@bid_item.created_at)} ago"%></p>
         <% if @is_timeout %>
           <p><%= "TIMEOUT (#{@timeout} minutes) " %></p>
+        <%# else %>
+          <p><%="Bid end in #{@time_left} minutes" %></p>
         <% end %>
       </div>
     </div>

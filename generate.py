@@ -15,7 +15,11 @@ for i in range(1,51):
     	"UserCommunity.create(community_id: " + str(comm_count) + ", user_id: " + str(i) + ")\n")
 
     for j in range(1,11):
+        time = str(random.randint(1,100))
         text_file.write(
-            "BidItem.create(item_name: 'Item" + str(j) + "belong_to" + str(i) + "', starting_price: 10, current_price: 10, fixed_price: " + str(random.randint(800,10000)) + ", seller_id: "+ str(i) + ")\n")
+            "BidItem.create(item_name: 'Item" + str(j) + "belong_to" + str(i) + 
+            "', starting_price: 10, current_price: 10, fixed_price: " + 
+            str(random.randint(800,10000)) + ", bid_time: " + time + 
+            ", bid_time_left: " + time + ", seller_id: "+ str(i) + ")\n")
 
 text_file.close()

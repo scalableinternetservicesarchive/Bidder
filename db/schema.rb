@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029204434) do
+ActiveRecord::Schema.define(version: 20161106100947) do
 
   create_table "bid_items", force: :cascade do |t|
     t.string   "item_name"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20161029204434) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "buyer_id"
+    t.integer  "bid_time"
+    t.integer  "bid_time_left"
   end
 
   create_table "bid_records", force: :cascade do |t|

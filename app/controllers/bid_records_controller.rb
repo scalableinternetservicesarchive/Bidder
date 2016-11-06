@@ -17,7 +17,6 @@ class BidRecordsController < ApplicationController
 				if @bid_record.save
 					@bid_item.update(current_price: @bid_record.price, current_bidder_id: @current_user.id)
 					format.html {redirect_to @bid_item, notice: 'Bid item was successfully created.' }
-
 					@bid_item.update(buyer_id: current_user.id) if @bid_record.price >= @bid_item.fixed_price
 				end
 			end

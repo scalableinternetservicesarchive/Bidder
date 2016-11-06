@@ -1,6 +1,9 @@
 class BidItem < ApplicationRecord
   #searchkick
 	validates :item_name, :presence => true
+	validates :starting_price, :presence => true
+	validates :fixed_price, :presence => true
+	validates :bid_time, :presence => true
 
 	has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, storage: :s3
 	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/

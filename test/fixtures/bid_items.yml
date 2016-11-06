@@ -4,6 +4,7 @@ one:
   item_name: MyItem1
   starting_price: 100
   fixed_price: 1000
+  bid_time: 5
   seller_id: 1
   description: MyString1
 
@@ -11,5 +12,6 @@ two:
   item_name: MyItem2
   starting_price: 2000
   fixed_price: 3000
+  bid_time: 10
   seller_id: 2
   description: MyString2

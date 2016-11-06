@@ -30,18 +30,21 @@
             </tr>
           </tbody>
           <tfoot>
-            <tr>
-              <td><%= link_to 'View Detail', bid_item %></td>
-              <% if bid_item.buyer_id? %>
-                <td><b><font color="red">SOLD OUT</font></b></td>
-              <% else %>  
-                <% if user_signed_in? %>
-                  <% if bid_item.seller_id == current_user.id %>
-                    <td><%= link_to 'Edit | ', edit_bid_item_path(bid_item) %></td>
+            <% if bid_item.buyer_id? %>
+              <tr><td><b><font color="red">SOLD OUT</font></b></td></tr>
+            <% else %>
+              <tr><td><b><font color="red"><%="#{bid_item.bid_time_left} min left"%></font></b></td></tr>
+              <% if user_signed_in? %>
+                <% if bid_item.seller_id == current_user.id %>
+                  <tr>
+                    <td><%= link_to 'Edit', edit_bid_item_path(bid_item) %></td>
                     <td><%= link_to 'Destroy', bid_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  <% end %>
+                  </tr>
                 <% end %>
               <% end %>
+            <% end %>
+            <tr>
+              <td><%= link_to 'View Detail', bid_item %></td>
             </tr>
           </tfoot>
         </table>  

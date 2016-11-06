@@ -22,16 +22,27 @@ class BidItemsController < ApplicationController
   end
 
   def index
-    @bid_items = BidItem.all
+    @bid_items = BidItem.order("bid_time_left ASC").all
+    # TODO, need to think about how to put timeout item in the end
   end
 
   # GET /bid_items/1
   # GET /bid_items/1.json
   def show
     @bid_records = BidRecord.where(bid_item_id: @bid_item).order("created_at DESC")
-    @timeout = 35
-    @is_timeout = @bid_item.created_at < @timeout.minutes.ago
-    @bid_item.update(buyer_id: current_bidder_id.id) if @is_timeout && !@bid_item.buyer_id?
+    @is_timeout = @bid_item.created_at < (@bid_item.bid_time).minutes.ago
+    if @is_timeout && !@bid_item.buyer_id?
+      @time_left = 0
+      @bid_item.update(bid_time_left: 0)
+      if @bid_item.current_bidder_id?
+        @bid_item.update(buyer_id: @bid_item.current_bidder_id) if @bid_item.current_bidder_id?
+      else
+        # TODO, need to handle no one bid
+      end
+    else
+      @time_left = (((@bid_item.created_at + @bid_item.bid_time.minutes) - Time.now)/60).round
+      @bid_item.update(bid_time_left: @time_left)
+    end
   end
 
   # GET /bid_items/new
@@ -50,6 +61,7 @@ class BidItemsController < ApplicationController
     @bid_item = BidItem.new(bid_item_params)
     @bid_item.seller_id = current_user.id
     @bid_item.current_price = @bid_item.starting_price
+    @bid_item.bid_time_left = @bid_item.bid_time
     respond_to do |format|
       if @bid_item.save
         format.html { redirect_to @bid_item, notice: 'Bid item was successfully created.' }
@@ -100,6 +112,6 @@ class BidItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_item_params
-      params.require(:bid_item).permit(:item_name, :starting_price, :current_price, :fixed_price, :current_bidder_id, :description, :image)
+      params.require(:bid_item).permit(:item_name, :starting_price, :current_price, :fixed_price, :current_bidder_id, :bid_time, :description, :image)
     end
 end
