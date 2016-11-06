@@ -1,9 +1,8 @@
 class BidItem < ApplicationRecord
   #searchkick
-	validates :item_name, :presence => true
-	validates :starting_price, :presence => true
-	validates :fixed_price, :presence => true
-	validates :bid_time, :presence => true
+	validates :item_name, :starting_price, :fixed_price, :presence => true
+	# I don't know why I can't make bid_time to presence
+	# validates :bid_time, :presence => true
 
 	has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, storage: :s3
 	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
