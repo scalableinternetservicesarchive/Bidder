@@ -11,11 +11,11 @@
   </div>
 <% end %>
 
-<% cache(cache_key_for_biditem_table) do %>
+<% cache(cache_key_for_biditem_index_table) do %>
   <div class="row">
     <% @bid_items.each do |bid_item| %>
 
-      <% cache(cache_key_for_biditem_row(bid_item)) do %>
+      <% cache(cache_key_for_biditem_index_row(bid_item)) do %>
 
         <div class="col-sm-6 col-md-3">
           <div class="thumbnail">
