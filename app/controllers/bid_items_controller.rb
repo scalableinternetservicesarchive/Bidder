@@ -22,19 +22,22 @@ class BidItemsController < ApplicationController
   end
 
   def index
-    @bid_items = BidItem.all
+    if stale?([BidItem.all, BidRecord.all, current_user])
+      @bid_items = BidItem.order("created_at DESC").limit(30)
+    end
   end
 
   # GET /bid_items/1
   # GET /bid_items/1.json
   def show
-    @bid_records = BidRecord.where(bid_item_id: @bid_item).order("created_at DESC")
+    @bid_records = @bid_item.bid_records
+    fresh_when([@bid_item, @bid_records, current_user])
+    # @current_user_id = current_user.id
   end
 
   # GET /bid_items/new
   def new
     @bid_item = BidItem.new
-    @bid_item.seller_id = current_user.id
   end
 
   # GET /bid_items/1/edit

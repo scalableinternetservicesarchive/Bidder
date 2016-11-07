@@ -11,34 +11,49 @@
   </div>
 <% end %>
 
+<% cache(cache_key_for_biditem_index_table) do %>
+  <div class="row">
+    <% @bid_items.each do |bid_item| %>
 
-<div class="row">
-  <% @bid_items.each do |bid_item| %>
-    <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-        <%= link_to (image_tag bid_item.image.url(:medium)), bid_item %>
-        <table>
-          <tbody>
-            <tr>
-              <td><%= bid_item.item_name %> | </td>
-              <td><%= bid_item.starting_price %> | </td>
-              <td><%= bid_item.current_price %></td>
-            </tr>
-            <tr>
-              <td><%= link_to 'View Detail | ', bid_item %></td>
-              <% if user_signed_in? %>
-                <% if bid_item.seller_id == current_user.id %>
-                  <td><%= link_to 'Edit | ', edit_bid_item_path(bid_item) %></td>
-                <% else %>
-                  <%= text_field_tag :bid_amount %>
-                  <%= submit_tag "Bid" %>
-                <% end %>
-                <td><%= link_to 'Destroy', bid_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>  
-      </div>
-    </div>
-  <% end %>
-</div>
+      <% cache(cache_key_for_biditem_index_row(bid_item)) do %>
+
+        <div class="col-sm-6 col-md-3">
+          <div class="thumbnail">
+            <%= link_to (image_tag bid_item.image.url(:medium)), bid_item %>
+            <table>
+              <thead>
+                <font size="+1"><tr><%= bid_item.item_name %></tr></font>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Current Price: <%= bid_item.current_price %></td>
+                </tr>
+                <tr>
+                  <td>Fixed Price: <%= bid_item.fixed_price %></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td><%= link_to 'View Detail', bid_item %></td>
+                  <% if bid_item.buyer_id? %>
+                    <td><b><font color="red">SOLD OUT</font></b></td>
+                  <% else %>  
+                    <% if user_signed_in? %>
+                      <% if bid_item.seller_id == current_user.id %>
+                        <td><%= link_to 'Edit | ', edit_bid_item_path(bid_item) %></td>
+                        <td><%= link_to 'Destroy', bid_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </tr>
+              </tfoot>
+            </table>  
+          </div>
+        </div>
+
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+
