@@ -22,7 +22,7 @@ class BidItemsController < ApplicationController
   end
 
   def index
-    @bid_items = BidItem.all
+    @bid_items = BidItem.order("created_at DESC").limit(30)
   end
 
   # GET /bid_items/1
