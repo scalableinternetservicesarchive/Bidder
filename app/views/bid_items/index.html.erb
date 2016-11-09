@@ -15,7 +15,7 @@
   <div class="row">
     <% @bid_items.each do |bid_item| %>
 
-      <% cache(cache_key_for_biditem_index_row(bid_item)) do %>
+      <% cache bid_item do %>
 
         <div class="col-sm-6 col-md-3">
           <div class="thumbnail">
