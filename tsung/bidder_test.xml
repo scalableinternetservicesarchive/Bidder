@@ -9,7 +9,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="tsung.kqsu4hptxs.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
+    <server host="load-test-chienyu.kqsu4hptxs.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
   </servers>
 
 
