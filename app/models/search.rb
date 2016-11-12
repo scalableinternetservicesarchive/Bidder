@@ -1,12 +1,6 @@
 class Search < ApplicationRecord
-  def products
-  	@products ||= find_products
-  end	
-
-  private
-
-  def find_products
-    products = BidItem.none
+  def results
+    results_o = BidItem.all
     if category_id.present?
       community = Community.find(category_id) 
       users = []
@@ -14,19 +8,13 @@ class Search < ApplicationRecord
         users << uc
       end
 
-      items_in_community = BidItem.where(seller_id: users)
-
-      products = items_in_community.where("item_name like ?", "%#{keywords}%") if keywords.present?
-      products = products.or(products)
-    else
-      if keywords.present?
-        products = BidItem.where("item_name like ?", "%#{keywords}%") 
-      else
-        products = BidItem.all
-      end
+      results_o = results_o.where(seller_id: users)
     end
-    products = products.where("fixed_price >= ?", min_price) if min_price.present?
-    products = products.where("fixed_price <= ?", min_price) if max_price.present? 
-    products   
+    results_o = results_o.where("item_name like ?", "%#{keywords}%") if keywords.present?
+
+    results_o = results_o.where("fixed_price >= ?", min_price) if min_price.present?
+    results_o = results_o.where("fixed_price <= ?", max_price) if max_price.present? 
+
+    results_o   
   end
 end
