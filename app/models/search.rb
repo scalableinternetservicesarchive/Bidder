@@ -19,8 +19,14 @@ class Search < ApplicationRecord
       products = items_in_community.where("item_name like ?", "%#{keywords}%") if keywords.present?
       products = products.or(products)
     else
-      products = BidItem.where("item_name like ?", "%#{keywords}%")
+      if keywords.present?
+        products = BidItem.where("item_name like ?", "%#{keywords}%") 
+      else
+        products = BidItem.all
+      end
     end
-    
+    products = products.where("fixed_price >= ?", min_price) if min_price.present?
+    products = products.where("fixed_price <= ?", min_price) if max_price.present? 
+    products   
   end
 end
