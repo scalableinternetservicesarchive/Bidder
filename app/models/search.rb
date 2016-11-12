@@ -6,28 +6,21 @@ class Search < ApplicationRecord
   private
 
   def find_products
-    products = []
+    products = BidItem.none
     if category_id.present?
       community = Community.find(category_id) 
+      users = []
       community.user_communities.each do |uc|
-        items = BidItem.where(:seller_id => User.find(uc.user_id))
-        
-        if keywords.present?
-          items_filter_name = items.where("item_name like ?", "%#{keywords}%") 
-          if items_filter_name.any?
-            items_filter_name.each do |item|
-            products << item
-            end
-          end
-        else
-          items.each do |item|
-            products << item
-          end
-        end
+        users << uc
       end
+
+      items_in_community = BidItem.where(seller_id: users)
+
+      products = items_in_community.where("item_name like ?", "%#{keywords}%") if keywords.present?
+      products = products.or(products)
     else
       products = BidItem.where("item_name like ?", "%#{keywords}%")
     end
-    products
+    
   end
 end
