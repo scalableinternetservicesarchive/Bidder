@@ -17,12 +17,12 @@ class BidItemsController < ApplicationController
       # This is to search price larger than
       @bid_items = BidItem.where("starting_price > ?", params[:search])
     else
-      @bid_items = BidItem.all
+      @bid_items = BidItem.order("created_at DESC").limit(30)
     end
   end
 
   def index
-    @bid_items = BidItem.all
+    @bid_items = BidItem.order("created_at DESC").limit(30)
   end
 
   # GET /bid_items/1
