@@ -13,7 +13,7 @@
           </th>
         </thead>
         <tbody>
-          <%= @search.results.each do |result| %>
+          <% @search.results.each do |result| %>
             <tr>
               <td><%= link_to result.item_name, bid_item_path(result) %></td>
               <td><%= result.fixed_price %></td>
