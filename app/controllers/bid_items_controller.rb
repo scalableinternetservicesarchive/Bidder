@@ -17,27 +17,25 @@ class BidItemsController < ApplicationController
       # This is to search price larger than
       @bid_items = BidItem.where("starting_price > ?", params[:search])
     else
-      @bid_items = BidItem.all
+      @bid_items = BidItem.order("created_at DESC").limit(30)
     end
   end
 
   def index
-    if stale?([BidItem.all, BidRecord.all, current_user])
-      @bid_items = BidItem.order("created_at DESC").limit(30)
-    end
+    @bid_items = BidItem.order("created_at DESC").limit(30)
   end
 
   # GET /bid_items/1
   # GET /bid_items/1.json
   def show
-    @bid_records = @bid_item.bid_records
-    fresh_when([@bid_item, @bid_records, current_user])
+    @bid_records = BidRecord.where(bid_item_id: @bid_item).order("created_at DESC")
     # @current_user_id = current_user.id
   end
 
   # GET /bid_items/new
   def new
     @bid_item = BidItem.new
+    @bid_item.seller_id = current_user.id
   end
 
   # GET /bid_items/1/edit

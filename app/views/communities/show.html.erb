@@ -1,43 +1,39 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @community.name %></h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong>Location:</strong>
+      <%= @community.location %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @community.name %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @community.location %>
-</p>
-
-<td><%= link_to 'Join', join_community_path(@community), method: :post %></td>
-<%= link_to 'Edit', edit_community_path(@community) %> |
-<%= link_to 'Back', communities_path %>
+    <p><%= link_to 'Join', join_community_path(@community), method: :post %> |
+    <%= link_to 'Edit', edit_community_path(@community) %> |
+    <%= link_to 'Back', communities_path %></p> 
 
 
-<table>
-  <thead>
-  <tr>
-    <th>Community</th>
-    <th>User</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-
-      </tr>
-  <% end %>
-  </tbody>
-  <tbody>
-  <% @items.each do |user| %>
-      <tr>
-        <td><%= user.item_name %></td>
-
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+    <div class="col-md-6">
+      <table width="300" border="1" style="float:left;">
+      <caption>Users in this community</caption>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <table width="300" border="1" style="float:left;">
+      <caption>Items in this community</caption>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= link_to item.item_name, bid_item_path(item) %>
+          <% if item.buyer_id? %>
+            <b><font color="red">SOLD OUT</font></b>
+          <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+  </div>
+</div>
