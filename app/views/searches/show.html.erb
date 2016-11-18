@@ -1,0 +1,27 @@
+<h1>Search Results</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="col-md-4">
+      <table width="300" border="1" style="float:left;">
+        <caption>Search Result</caption>
+        <thead>
+          <th>
+            Item Name
+          </th>
+          <th>
+            Fixed Price
+          </th>
+        </thead>
+        <tbody>
+          <% @search.results.each do |result| %>
+            <tr>
+              <td><%= link_to result.item_name, bid_item_path(result) %></td>
+              <td><%= result.fixed_price %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

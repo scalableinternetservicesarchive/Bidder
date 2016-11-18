@@ -17,9 +17,9 @@
             <tbody>
             <% current_user.sell_items.each do |item| %>
               <tr>
-                  <td><%= link_to item.item_name, bid_item_path(item) %></td>
-                  <td><%= item.current_price %></td>
-                </tr>
+                <td><%= link_to item.item_name, bid_item_path(item) %></td>
+                <td><%= item.current_price %></td>
+              </tr>
             <% end %>
           </tbody>
         </table>
