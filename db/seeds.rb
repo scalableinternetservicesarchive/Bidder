@@ -22,7 +22,7 @@ end
 	User.create(email: i.to_s+'_big@ucsb', password: '123456', password_confirmation: '123456')
 	n += 1
 
-	total = r.rand(800..1000)
+	total = r.rand(100..500)
 	total.times do |j|
 		BidItem.create(item_name: j.to_s+'item_of_big_'+i.to_s, starting_price: 10, current_price: 10, fixed_price: r.rand(800..10000), seller_id: n)
 	end
