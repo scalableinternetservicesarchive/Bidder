@@ -116,6 +116,7 @@
                         re:replace(Val,"[+]","%2B",[global, {return,list}]) end.'>
                   <var name="authenticity_token" />
         </setdynvars>
+
         <setdynvars sourcetype="random_number" start="10" end="1200">
           <var name="bid_price" />
         </setdynvars>
@@ -150,6 +151,7 @@
                         re:replace(Val,"[+]","%2B",[global, {return,list}]) end.'>
                   <var name="authenticity_token" />
         </setdynvars>
+
         <setdynvars sourcetype="random_number" start="10" end="1200">
           <var name="bid_price2" />
         </setdynvars>
@@ -161,6 +163,40 @@
         </request>
       </if>
       
+      <!-- search something -->
+      <request subst="true">
+        <dyn_variable name='authenticity_token'></dyn_variable>
+        <http url='/searches/new' version='1.1' method='GET'></http>
+      </request>
+
+      <thinktime value="1" random="true"></thinktime>
+
+      <if var="authenticity_token" neq="">
+        <setdynvars sourcetype="eval"
+                  code='fun({Pid,DynVars})->
+                        {ok,Val}=ts_dynvars:lookup(authenticity_token,DynVars),
+                        re:replace(Val,"[+]","%2B",[global, {return,list}]) end.'>
+                  <var name="authenticity_token" />
+        </setdynvars>
+
+        <setdynvars sourcetype="random_number" start="10" end="1200">
+          <var name="random_community" />
+        </setdynvars>
+
+        <thinktime value="1" random="true"></thinktime>
+
+        <request subst="true" >
+          <dyn_variable name="search_item" xpath="/html/body/div[2]/div/div/div/table/tbody/tr[1]/td[1]/a/@href">
+          <http url='/searches' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;search[category_id]=%%_random_community%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
+        </request>
+
+        <thinktime value="1" random="true"></thinktime>
+
+        <request subst="true">
+        <http url='%%_search_item%%' version='1.1' method='GET'></http>
+      </request>
+      
+      </if>
     </session>
 
     <!-- ############################################################ -->
