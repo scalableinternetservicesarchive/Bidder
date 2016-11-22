@@ -9,16 +9,14 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="tsung.kqsu4hptxs.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
+    <server host="load-test-chienyu.kqsu4hptxs.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
   </servers>
 
 
   <load>
     <arrivalphase phase="1" duration="10" unit="second">
       <users arrivalrate="1" unit="second"></users>
-    
     </arrivalphase>
-    
     <arrivalphase phase="2" duration="10" unit="second">
       <users arrivalrate="2" unit="second"></users>
     </arrivalphase>
@@ -31,9 +29,9 @@
    <arrivalphase phase="5" duration="10" unit="second">
      <users arrivalrate="16" unit="second"></users>
    </arrivalphase>
-   <arrivalphase phase="6" duration="30" unit="second">
+<!--    <arrivalphase phase="6" duration="30" unit="second">
      <users arrivalrate="32" unit="second"></users>
-   </arrivalphase>
+   </arrivalphase> -->
 
    <!--
    <arrivalphase phase="7" duration="30" unit="second">
@@ -100,7 +98,7 @@
 
       <thinktime value="1" random="true"></thinktime>
 
-      <setdynvars sourcetype="random_number" start="1" end="38000">
+      <setdynvars sourcetype="random_number" start="1" end="15000">
         <var name="random_item" />
       </setdynvars>
 
@@ -135,7 +133,7 @@
 
       <thinktime value="1" random="true"></thinktime>
 
-      <setdynvars sourcetype="random_number" start="1" end="38000">
+      <setdynvars sourcetype="random_number" start="1" end="15000">
         <var name="random_item2" />
       </setdynvars>
 
@@ -186,28 +184,28 @@
         <thinktime value="1" random="true"></thinktime>
 
         <request subst="true" >
-          <dyn_variable name="search_item" xpath="/html/body/div[2]/div/div/div/table/tbody/tr[1]/td[1]/a/@href">
+          <dyn_variable name="search_item" xpath="/html/body/div[2]/div/div/div/table/tbody/tr[1]/td[1]/a/@href"/>
           <http url='/searches' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;search[category_id]=%%_random_community%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
         </request>
 
         <thinktime value="1" random="true"></thinktime>
 
         <request subst="true">
-        <http url='%%_search_item%%' version='1.1' method='GET'></http>
-      </request>
+          <http url='%%_search_item%%' version='1.1' method='GET'></http>
+        </request>
 
       </if>
 
       <!-- go to profile -->
       <request>
-        <http url='/users/profile' version='1.1' method='GET'></http>
+        <http url='/users/%%_user_id_1%%' version='1.1' method='GET'></http>
       </request>
 
     </session>
 
     <!-- ############################################################ -->
     <!-- flow 2, browsing user -->
-    <session name="flow_2" probability="76" type="ts_http">
+    <session name="flow_2" probability="72" type="ts_http">
 
       <request>
         <http url='/' version='1.1' method='GET'></http>
@@ -220,7 +218,7 @@
       </request>
 
       <!-- go to a random item -->
-      <setdynvars sourcetype="random_number" start="1" end="38000">
+      <setdynvars sourcetype="random_number" start="1" end="15000">
         <var name="random_item" />
       </setdynvars>
 
@@ -237,7 +235,7 @@
       <thinktime value="1" random="true"></thinktime>
 
       <!-- go to next random item -->
-      <setdynvars sourcetype="random_number" start="1" end="38000">
+      <setdynvars sourcetype="random_number" start="1" end="15000">
         <var name="random_item2" />
       </setdynvars>
 
@@ -254,7 +252,7 @@
       <thinktime value="1" random="true"></thinktime>
 
       <!-- go to third random item -->
-      <setdynvars sourcetype="random_number" start="1" end="38000">
+      <setdynvars sourcetype="random_number" start="1" end="15000">
         <var name="random_item3" />
       </setdynvars>
 
@@ -305,14 +303,14 @@
       <thinktime value="2" random="true"></thinktime>
 
       <request subst="true" >
-        <dyn_variable name="user_id_1" re="[Ll]ocation: http://.*/users/(.*)\r" />
+        <dyn_variable name="user_id_2" re="[Ll]ocation: http://.*/users/(.*)\r" />
         <http url='/users/sign_in' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;user[email]=%%_nth_big_user%%_big@ucsb&amp;user[password]=123456" content_type="application/x-www-form-urlencoded" method='POST'></http>
       </request>
 
       <!-- check profile -->
       <request>
         <dyn_variable name="item_1" xpath="//div[1]/table/tbody/tr[1]/td/a/@href"/>
-        <http url='/profile' version='1.1' method='GET'></http>
+        <http url='/users/%%_user_id_2%%' version='1.1' method='GET'></http>
       </request>
 
       <!-- check items -->
@@ -324,7 +322,7 @@
 
       <request>
         <dyn_variable name="item_2" xpath="//div[1]/table/tbody/tr[2]/td/a/@href"/>
-        <http url='/profile' version='1.1' method='GET'></http>
+        <http url='/users/%%_user_id_2%%' version='1.1' method='GET'></http>
       </request>
 
       <request>
@@ -335,7 +333,7 @@
 
       <request>
         <dyn_variable name="item_3" xpath="//div[1]/table/tbody/tr[3]/td/a/@href"/>
-        <http url='/profile' version='1.1' method='GET'></http>
+        <http url='/users/%%_user_id_2%%' version='1.1' method='GET'></http>
       </request>
 
       <request>
@@ -367,7 +365,7 @@
       <thinktime value="2" random="true"></thinktime>
 
       <request subst="true" >
-        <dyn_variable name="user_id_1" re="[Ll]ocation: http://.*/users/(.*)\r" />
+        <dyn_variable name="user_id_4" re="[Ll]ocation: http://.*/users/(.*)\r" />
         <http url='/users/sign_in' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;user[email]=%%_nth_small_user%%_small@ucsb&amp;user[password]=123456" content_type="application/x-www-form-urlencoded" method='POST'></http>
       </request>
 
@@ -445,7 +443,7 @@
         <dyn_variable name="item_1" xpath="//div[1]/table/tbody/tr[1]/td/a/@href"/>
         <dyn_variable name="item_2" xpath="//div[1]/table/tbody/tr[2]/td/a/@href"/>
         <dyn_variable name="item_3" xpath="//div[1]/table/tbody/tr[3]/td/a/@href"/>
-        <http url='/profile' version='1.1' method='GET'></http>
+        <http url='/users/%%_user_id_4%%' version='1.1' method='GET'></http>
       </request>
 
       <!-- check items -->
@@ -457,7 +455,7 @@
 
       <request>
         <dyn_variable name="item_2" xpath="//div[1]/table/tbody/tr[2]/td/a/@href"/>
-        <http url='/profile' version='1.1' method='GET'></http>
+        <http url='/users/%%_user_id_4%%' version='1.1' method='GET'></http>
       </request>
 
       <request>
@@ -468,7 +466,7 @@
 
       <request>
         <dyn_variable name="item_3" xpath="//div[1]/table/tbody/tr[3]/td/a/@href"/>
-        <http url='/profile' version='1.1' method='GET'></http>
+        <http url='/users/%%_user_id_4%%' version='1.1' method='GET'></http>
       </request>
 
       <request>
