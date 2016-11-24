@@ -541,7 +541,7 @@
 
     <!-- ############################################################ -->
     <!-- flow 5, small seller -->
-    <session name="flow_4" probability="2" type="ts_http">
+    <session name="flow_5" probability="2" type="ts_http">
 
       <request>
         <dyn_variable name='authenticity_token'></dyn_variable>
@@ -585,12 +585,20 @@
       <thinktime value="2" random="true"></thinktime>
 
       <setdynvars sourcetype="random_string" length="10">
-        <var name="rndname1" />
+        <var name="rnd_name" />
+      </setdynvars>
+
+      <setdynvars sourcetype="random_number" start="10" end="500">
+        <var name="rnd_starting_price" />
+      </setdynvars>
+
+      <setdynvars sourcetype="random_number" start="5000" end="50000">
+        <var name="rnd_fixed_price" />
       </setdynvars>
 
       <request subst="true" >
         <dyn_variable name="item_id_1_1" re="[Ll]ocation: http://.*/bid_items/(.*)\r" />
-        <http url="/bid_items" version="1.1" contents="authenticity_token=%%_authenticity_token%%&amp;bid_item[item_name]=%%_rndname1%%&amp;bid_item[starting_price]=10&amp;bid_item[fixed_price]=2000" content_type="application/x-www-form-urlencoded" method='POST'></http>
+        <http url="/bid_items" version="1.1" contents="authenticity_token=%%_authenticity_token%%&amp;bid_item[item_name]=%%_rnd_name%%&amp;bid_item[starting_price]=%%_rnd_starting_price%%&amp;bid_item[fixed_price]=%%_rnd_fixed_price%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
       </request>
 
       <!-- post second item -->

@@ -5,7 +5,6 @@ o = [('a'..'z')].map { |i| i.to_a }.flatten
 puts 'Generating 1000 users...'
 (1..1000).each do |i|
 	User.create(email: i.to_s+'@ucsb', password: '123456', password_confirmation: '123456')
-	n += 1
 end
 puts 'Generated 1000 users.'
 
