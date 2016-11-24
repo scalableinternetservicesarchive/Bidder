@@ -23,12 +23,12 @@
     <arrivalphase phase="3" duration="10" unit="second">
       <users arrivalrate="4" unit="second"></users>
     </arrivalphase>
-   <arrivalphase phase="4" duration="10" unit="second">
-     <users arrivalrate="8" unit="second"></users>
-   </arrivalphase>
-   <arrivalphase phase="5" duration="10" unit="second">
-     <users arrivalrate="16" unit="second"></users>
-   </arrivalphase>
+<!--     <arrivalphase phase="4" duration="10" unit="second">
+      <users arrivalrate="8" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="5" duration="10" unit="second">
+      <users arrivalrate="16" unit="second"></users>
+    </arrivalphase> -->
 <!--    <arrivalphase phase="6" duration="30" unit="second">
      <users arrivalrate="32" unit="second"></users>
    </arrivalphase> -->
@@ -519,7 +519,7 @@
         <http url='/users/sign_in' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;user[email]=%%_rnd_big_seller%%@ucsb&amp;user[password]=123456" content_type="application/x-www-form-urlencoded" method='POST'></http>
       </request>
 
-      <!-- go to profile -->
+      <!-- go to profile and link one item-->
       <request>
         <dyn_variable name='all_profile_selling_item_url' xpath="/html/body/div/div/div/div[1]/table/tbody/tr[*]/td[1]/a/@href"/>
         <http url='/users/profile' version='1.1' method='GET'></http>
@@ -533,6 +533,48 @@
                 <var name="rnd_profile_selling_item_url" />
       </setdynvars>
 
+      <thinktime value="1" random="true"></thinktime>
+
+      <request subst="true">
+        <http url='%%_rnd_profile_selling_item_url%%' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- link next one -->
+      <request>
+        <dyn_variable name='all_profile_selling_item_url' xpath="/html/body/div/div/div/div[1]/table/tbody/tr[*]/td[1]/a/@href"/>
+        <http url='/users/profile' version='1.1' method='GET'></http>
+      </request>
+
+      <setdynvars sourcetype="eval"
+                code='fun({Pid,DynVars})->
+                      {ok,Val}=ts_dynvars:lookup(all_profile_selling_item_url,DynVars),
+                      random:seed(now()),
+                      lists:nth(random:uniform(length(Val)), Val) end.' >
+                <var name="rnd_profile_selling_item_url" />
+      </setdynvars>
+
+      <thinktime value="1" random="true"></thinktime>
+      
+      <request subst="true">
+        <http url='%%_rnd_profile_selling_item_url%%' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- link third one -->
+      <request>
+        <dyn_variable name='all_profile_selling_item_url' xpath="/html/body/div/div/div/div[1]/table/tbody/tr[*]/td[1]/a/@href"/>
+        <http url='/users/profile' version='1.1' method='GET'></http>
+      </request>
+
+      <setdynvars sourcetype="eval"
+                code='fun({Pid,DynVars})->
+                      {ok,Val}=ts_dynvars:lookup(all_profile_selling_item_url,DynVars),
+                      random:seed(now()),
+                      lists:nth(random:uniform(length(Val)), Val) end.' >
+                <var name="rnd_profile_selling_item_url" />
+      </setdynvars>
+
+      <thinktime value="1" random="true"></thinktime>
+      
       <request subst="true">
         <http url='%%_rnd_profile_selling_item_url%%' version='1.1' method='GET'></http>
       </request>
@@ -562,7 +604,7 @@
       <thinktime value="1" random="true"></thinktime>
 
       <request subst="true" >
-        <http url='/users/sign_in' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;user[email]=%%_rnd_small_seller%%_small@ucsb&amp;user[password]=123456" content_type="application/x-www-form-urlencoded" method='POST'></http>
+        <http url='/users/sign_in' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;user[email]=%%_rnd_small_seller%%@ucsb&amp;user[password]=123456" content_type="application/x-www-form-urlencoded" method='POST'></http>
       </request>
 
       <!-- post first item -->
@@ -582,7 +624,7 @@
                   <var name="authenticity_token" />
       </setdynvars>
 
-      <thinktime value="2" random="true"></thinktime>
+      <thinktime value="1" random="true"></thinktime>
 
       <setdynvars sourcetype="random_string" length="10">
         <var name="rnd_name" />
@@ -597,7 +639,7 @@
       </setdynvars>
 
       <request subst="true" >
-        <dyn_variable name="item_id_1_1" re="[Ll]ocation: http://.*/bid_items/(.*)\r" />
+        <dyn_variable name="item_id_1" re="[Ll]ocation: http://.*/bid_items/(.*)\r" />
         <http url="/bid_items" version="1.1" contents="authenticity_token=%%_authenticity_token%%&amp;bid_item[item_name]=%%_rnd_name%%&amp;bid_item[starting_price]=%%_rnd_starting_price%%&amp;bid_item[fixed_price]=%%_rnd_fixed_price%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
       </request>
 
@@ -614,15 +656,23 @@
                   <var name="authenticity_token" />
       </setdynvars>
 
-      <thinktime value="2" random="true"></thinktime>
+      <thinktime value="1" random="true"></thinktime>
 
       <setdynvars sourcetype="random_string" length="10">
-        <var name="rndname2" />
+        <var name="rnd_name" />
+      </setdynvars>
+
+      <setdynvars sourcetype="random_number" start="10" end="500">
+        <var name="rnd_starting_price" />
+      </setdynvars>
+
+      <setdynvars sourcetype="random_number" start="5000" end="50000">
+        <var name="rnd_fixed_price" />
       </setdynvars>
 
       <request subst="true" >
-        <dyn_variable name="item_id_1_2" re="[Ll]ocation: http://.*/bid_items/(.*)\r" />
-        <http url="/bid_items" version="1.1" contents="authenticity_token=%%_authenticity_token%%&amp;bid_item[item_name]=%%_rndname2%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
+        <dyn_variable name="item_id_2" re="[Ll]ocation: http://.*/bid_items/(.*)\r" />
+        <http url="/bid_items" version="1.1" contents="authenticity_token=%%_authenticity_token%%&amp;bid_item[item_name]=%%_rnd_name%%&amp;bid_item[starting_price]=%%_rnd_starting_price%%&amp;bid_item[fixed_price]=%%_rnd_fixed_price%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
       </request>
 
       <!-- check the posted items -->
@@ -630,58 +680,63 @@
         <http url='/bid_items' version='1.1' method='GET'></http>
       </request>
 
-      <request>
-        <http url='/bid_items/%%_item_id_1_1%%' version='1.1' method='GET'></http>
+      <request subst="true" >
+        <http url='/bid_items/%%_item_id_1%%' version='1.1' method='GET'></http>
       </request>
+
+      <thinktime value="1" random="true"></thinktime>
 
       <request>
         <http url='/bid_items' version='1.1' method='GET'></http>
       </request>
 
-      <request>
-        <http url='/bid_items/%%_item_id_1_2%%' version='1.1' method='GET'></http>
+      <request subst="true" >
+        <http url='/bid_items/%%_item_id_2%%' version='1.1' method='GET'></http>
       </request>
 
-      <!-- check profile -->
+      <!-- go to profile and check one item -->
       <request>
-        <dyn_variable name="item_1" xpath="//div[1]/table/tbody/tr[1]/td/a/@href"/>
-        <dyn_variable name="item_2" xpath="//div[1]/table/tbody/tr[2]/td/a/@href"/>
-        <dyn_variable name="item_3" xpath="//div[1]/table/tbody/tr[3]/td/a/@href"/>
-        <http url='/users/%%_user_id_4%%' version='1.1' method='GET'></http>
+        <dyn_variable name='all_profile_selling_item_url' xpath="/html/body/div/div/div/div[1]/table/tbody/tr[*]/td[1]/a/@href"/>
+        <http url='/users/profile' version='1.1' method='GET'></http>
       </request>
 
-      <!-- check items -->
-      <request>
-        <http url='%%_item_1%%' version='1.1' method='GET'></http>
+      <setdynvars sourcetype="eval"
+                code='fun({Pid,DynVars})->
+                      {ok,Val}=ts_dynvars:lookup(all_profile_selling_item_url,DynVars),
+                      random:seed(now()),
+                      lists:nth(random:uniform(length(Val)), Val) end.' >
+                <var name="rnd_profile_selling_item_url" />
+      </setdynvars>
+
+      <request subst="true">
+        <http url='%%_rnd_profile_selling_item_url%%' version='1.1' method='GET'></http>
       </request>
 
-      <thinktime value="2" random="true"></thinktime>
+      <thinktime value="1" random="true"></thinktime>
 
+      <!-- check another -->
       <request>
-        <dyn_variable name="item_2" xpath="//div[1]/table/tbody/tr[2]/td/a/@href"/>
-        <http url='/users/%%_user_id_4%%' version='1.1' method='GET'></http>
+        <dyn_variable name='all_profile_selling_item_url' xpath="/html/body/div/div/div/div[1]/table/tbody/tr[*]/td[1]/a/@href"/>
+        <http url='/users/profile' version='1.1' method='GET'></http>
       </request>
 
-      <request>
-        <http url='%%_item_2%%' version='1.1' method='GET'></http>
-      </request>
+      <setdynvars sourcetype="eval"
+                code='fun({Pid,DynVars})->
+                      {ok,Val}=ts_dynvars:lookup(all_profile_selling_item_url,DynVars),
+                      random:seed(now()),
+                      lists:nth(random:uniform(length(Val)), Val) end.' >
+                <var name="rnd_profile_selling_item_url" />
+      </setdynvars>
 
-      <thinktime value="2" random="true"></thinktime>
-
-      <request>
-        <dyn_variable name="item_3" xpath="//div[1]/table/tbody/tr[3]/td/a/@href"/>
-        <http url='/users/%%_user_id_4%%' version='1.1' method='GET'></http>
-      </request>
-
-      <request>
-        <http url='%%_item_3%%' version='1.1' method='GET'></http>
+      <request subst="true">
+        <http url='%%_rnd_profile_selling_item_url%%' version='1.1' method='GET'></http>
       </request>
 
     </session>
 
     <!-- ############################################################ -->
-    <!-- flow 5, new users -->
-    <session name="flow_5" probability="1" type="ts_http">
+    <!-- flow 6, new users -->
+    <session name="flow_6" probability="1" type="ts_http">
       <request>
         <http url='/' version='1.1' method='GET'></http>
       </request>
@@ -711,14 +766,14 @@
         <var name="user_email" />
       </setdynvars>
 
-      <thinktime value="2" random="true"></thinktime>
+      <thinktime value="1" random="true"></thinktime>
 
       <request subst="true" >
         <!-- <dyn_variable name="new_user_id" re="[Ll]ocation: http://.*/users/(.*)\r" /> -->
         <http url='/users' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;user[email]=%%_user_email%%@ucsb&amp;user[password]=123456&amp;user[password_confirmation]=123456" content_type="application/x-www-form-urlencoded" method='POST'></http>
       </request>
 
-      <!-- go to join one community -->
+      <!-- go to one community -->
       <request>
         <http url='/users/communities' version='1.1' method='GET'></http>
       </request>
@@ -729,11 +784,9 @@
 
       <thinktime value="1" random="true"></thinktime>
 
-      <request>
-        <http url='/users/communities/%%_nth_community' version='1.1' method='GET'></http>
+      <request subst="true" >
+        <http url='/communities/%%_nth_community' version='1.1' method='GET'></http>
       </request>
-
-      <!-- how to join ? -->
 
     </session>
 

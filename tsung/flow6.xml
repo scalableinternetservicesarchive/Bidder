@@ -57,15 +57,24 @@
   </options>
 
   <sessions>
-    <session name="flow_4" probability="100" type="ts_http">
+    <session name="flow_6" probability="100" type="ts_http">
 
       <request>
         <http url='/' version='1.1' method='GET'></http>
       </request>
 
       <request>
-        <dyn_variable name='authenticity_token'></dyn_variable>
+        <http url='/bid_items' version='1.1' method='GET'></http>
+      </request>
+
+      <request>
         <http url='/users/sign_in' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- go to sign up page -->
+      <request>
+        <dyn_variable name='authenticity_token'></dyn_variable>
+        <http url='/users/sign_up' version='1.1' method='GET'></http>
       </request>
 
       <setdynvars sourcetype="eval"
@@ -75,32 +84,30 @@
                   <var name="authenticity_token" />
       </setdynvars>
 
-      <setdynvars sourcetype="random_number" start="151" end="200">
-        <var name="rnd_big_seller" />
+      <setdynvars sourcetype="random_string" length="5">
+        <var name="user_email" />
       </setdynvars>
 
       <thinktime value="1" random="true"></thinktime>
 
       <request subst="true" >
-        <http url='/users/sign_in' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;user[email]=%%_rnd_big_seller%%@ucsb&amp;user[password]=123456" content_type="application/x-www-form-urlencoded" method='POST'></http>
+        <!-- <dyn_variable name="new_user_id" re="[Ll]ocation: http://.*/users/(.*)\r" /> -->
+        <http url='/users' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;user[email]=%%_user_email%%@ucsb&amp;user[password]=123456&amp;user[password_confirmation]=123456" content_type="application/x-www-form-urlencoded" method='POST'></http>
       </request>
 
-      <!-- go to profile -->
+      <!-- go to one community -->
       <request>
-        <dyn_variable name='all_profile_selling_item_url' xpath="/html/body/div/div/div/div[1]/table/tbody/tr[*]/td[1]/a/@href"/>
-        <http url='/users/profile' version='1.1' method='GET'></http>
+        <http url='/users/communities' version='1.1' method='GET'></http>
       </request>
 
-      <setdynvars sourcetype="eval"
-                code='fun({Pid,DynVars})->
-                      {ok,Val}=ts_dynvars:lookup(all_profile_selling_item_url,DynVars),
-                      random:seed(now()),
-                      lists:nth(random:uniform(length(Val)), Val) end.' >
-                <var name="rnd_profile_selling_item_url" />
+      <setdynvars sourcetype="random_number" start="1" end="10">
+        <var name="nth_community" />
       </setdynvars>
 
-      <request subst="true">
-        <http url='%%_rnd_profile_selling_item_url%%' version='1.1' method='GET'></http>
+      <thinktime value="1" random="true"></thinktime>
+
+      <request subst="true" >
+        <http url='/communities/%%_nth_community' version='1.1' method='GET'></http>
       </request>
 
     </session>
