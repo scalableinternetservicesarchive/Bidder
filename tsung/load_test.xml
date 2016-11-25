@@ -114,7 +114,7 @@
                   <var name="authenticity_token" />
         </setdynvars>
 
-        <setdynvars sourcetype="random_number" start="10" end="50000">
+        <setdynvars sourcetype="random_number" start="10" end="20000">
           <var name="rnd_bid_price" />
         </setdynvars>
 
@@ -154,7 +154,7 @@
                   <var name="authenticity_token" />
         </setdynvars>
 
-        <setdynvars sourcetype="random_number" start="10" end="50000">
+        <setdynvars sourcetype="random_number" start="10" end="20000">
           <var name="bid_price" />
         </setdynvars>
 
@@ -285,8 +285,12 @@
 
           <thinktime value="1" random="true"></thinktime>
 
+          <setdynvars sourcetype="random_number" start="200" end="20000">
+            <var name="bid_price" />
+          </setdynvars>
+
           <request subst="true" >
-            <http url='%%_rnd_search_item_url%%/bid_records' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;bid_record[price]=%%_rnd_max_price%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
+            <http url='%%_rnd_search_item_url%%/bid_records' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;bid_record[price]=%%_bid_price%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
           </request>
         </if>
 
