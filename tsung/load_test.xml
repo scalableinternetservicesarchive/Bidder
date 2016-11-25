@@ -14,21 +14,21 @@
 
 
   <load>
-    <arrivalphase phase="1" duration="10" unit="second">
+    <arrivalphase phase="1" duration="30" unit="second">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
-    <arrivalphase phase="2" duration="10" unit="second">
+    <arrivalphase phase="2" duration="30" unit="second">
       <users arrivalrate="2" unit="second"></users>
     </arrivalphase>
-    <arrivalphase phase="3" duration="10" unit="second">
+    <arrivalphase phase="3" duration="30" unit="second">
       <users arrivalrate="4" unit="second"></users>
     </arrivalphase>
-<!--     <arrivalphase phase="4" duration="10" unit="second">
+    <arrivalphase phase="4" duration="30" unit="second">
       <users arrivalrate="8" unit="second"></users>
     </arrivalphase>
-    <arrivalphase phase="5" duration="10" unit="second">
+    <arrivalphase phase="5" duration="30" unit="second">
       <users arrivalrate="16" unit="second"></users>
-    </arrivalphase> -->
+    </arrivalphase>
 <!--    <arrivalphase phase="6" duration="30" unit="second">
      <users arrivalrate="32" unit="second"></users>
    </arrivalphase> -->
@@ -284,8 +284,12 @@
 
           <thinktime value="1" random="true"></thinktime>
 
+          <setdynvars sourcetype="random_number" start="5000" end="20000">
+            <var name="rnd_bid_price" />
+          </setdynvars>
+
           <request subst="true" >
-            <http url='%%_rnd_search_item_url%%/bid_records' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;bid_record[price]=%%_rnd_max_price%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
+            <http url='%%_rnd_search_item_url%%/bid_records' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;bid_record[price]=%%_rnd_bid_price%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
           </request>
         </if>
 
@@ -626,7 +630,7 @@
 
       <thinktime value="1" random="true"></thinktime>
 
-      <setdynvars sourcetype="random_string" length="10">
+      <setdynvars sourcetype="random_string" length="20">
         <var name="rnd_name" />
       </setdynvars>
 
@@ -658,7 +662,7 @@
 
       <thinktime value="1" random="true"></thinktime>
 
-      <setdynvars sourcetype="random_string" length="10">
+      <setdynvars sourcetype="random_string" length="20">
         <var name="rnd_name" />
       </setdynvars>
 
