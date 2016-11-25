@@ -1,6 +1,6 @@
 module BidItemsHelper
-  def cache_key_for_biditem_index_table
-    "bid_item-index-table-#{BidItem.maximum(:updated_at)}"
+  def cache_key_for_biditem_index_table(bid_items)
+    "bid_item-index-table-#{bid_items.maximum(:updated_at)}"
   end
 
   def cache_key_for_biditem_index_row(bid_item)
