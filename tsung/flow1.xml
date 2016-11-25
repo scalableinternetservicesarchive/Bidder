@@ -1,0 +1,296 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/home/ec2-user/opt/tsung-1.5.0/share/tsung/tsung-1.0.dtd">
+<tsung loglevel="notice" version="1.0">
+
+  <!-- Client side setup -->
+  <clients>
+    <client host="localhost" use_controller_vm="true" maxusers='15000'/>
+  </clients>
+
+  <!-- Server side setup -->
+  <servers>
+    <server host="load-test-chienyu.kqsu4hptxs.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
+  </servers>
+
+
+  <load>
+    <arrivalphase phase="1" duration="1" unit="second">
+      <users arrivalrate="1" unit="second"></users>
+    </arrivalphase>
+<!--     <arrivalphase phase="2" duration="10" unit="second">
+      <users arrivalrate="2" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="3" duration="10" unit="second">
+      <users arrivalrate="4" unit="second"></users>
+    </arrivalphase> -->
+<!--    <arrivalphase phase="4" duration="10" unit="second">
+     <users arrivalrate="8" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="5" duration="10" unit="second">
+     <users arrivalrate="16" unit="second"></users>
+   </arrivalphase> -->
+<!--    <arrivalphase phase="6" duration="30" unit="second">
+     <users arrivalrate="32" unit="second"></users>
+   </arrivalphase> -->
+
+   <!--
+   <arrivalphase phase="7" duration="30" unit="second">
+     <users arrivalrate="64" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="8" duration="30" unit="second">
+     <users arrivalrate="128" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="9" duration="30" unit="second">
+     <users arrivalrate="256" unit="second"></users>
+   </arrivalphase>
+    -->
+
+  </load>
+
+  <options>
+    <!-- Set connection timeout to 2 seconds -->
+    <option name="global_ack_timeout" value="2000"></option>
+
+    <option type="ts_http" name="user_agent">
+      <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
+    </option>
+  </options>
+
+  <sessions>
+    <!-- flow 1: bidding users-->
+    <session name="flow_1" probability="100" type="ts_http">
+
+      <request>
+        <http url='/' version='1.1' method='GET'></http>
+      </request>
+      
+      <request>
+        <dyn_variable name='authenticity_token'></dyn_variable>
+        <http url='/users/sign_in' version='1.1' method='GET'></http>
+      </request>
+
+      <setdynvars sourcetype="eval"
+                  code='fun({Pid,DynVars})->
+                        {ok,Val}=ts_dynvars:lookup(authenticity_token,DynVars),
+                        re:replace(Val,"[+]","%2B",[global, {return,list}]) end.'>
+                  <var name="authenticity_token" />
+      </setdynvars>
+
+      <setdynvars sourcetype="random_number" start="201" end="1000">
+        <var name="nth_browsing_user" />
+      </setdynvars>
+
+      <request subst="true" >
+        <http url='/users/sign_in' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;user[email]=%%_nth_browsing_user%%@ucsb&amp;user[password]=123456" content_type="application/x-www-form-urlencoded" method='POST'></http>
+      </request>
+
+      <!-- bid a random item -->
+      <request>
+        <dyn_variable name='all_item' xpath="/html/body/div/div[2]/div[*]/div/a/@href"/>
+        <http url='/bid_items' version='1.1' method='GET'></http>
+      </request>
+
+      <thinktime value="1" random="true"></thinktime>
+
+      <setdynvars sourcetype="eval"
+                  code='fun({Pid,DynVars})->
+                        {ok,Val}=ts_dynvars:lookup(all_item,DynVars),
+                        random:seed(now()),
+                        lists:nth(random:uniform(length(Val)), Val) end.' >
+                  <var name="rnd_item_index_page_url" />
+      </setdynvars>
+
+      <request subst="true">
+        <dyn_variable name='authenticity_token'></dyn_variable>
+        <http url='%%_rnd_item_index_page_url%%' version='1.1' method='GET'></http>
+      </request>
+
+      <if var="authenticity_token" neq="">
+        <setdynvars sourcetype="eval"
+                  code='fun({Pid,DynVars})->
+                        {ok,Val}=ts_dynvars:lookup(authenticity_token,DynVars),
+                        re:replace(Val,"[+]","%2B",[global, {return,list}]) end.'>
+                  <var name="authenticity_token" />
+        </setdynvars>
+
+        <setdynvars sourcetype="random_number" start="10" end="50000">
+          <var name="rnd_bid_price" />
+        </setdynvars>
+
+        <thinktime value="1" random="true"></thinktime>
+
+        <request subst="true" >
+          <http url='%%_rnd_item_index_page_url%%/bid_records' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;bid_record[price]=%%_rnd_bid_price%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
+        </request>
+      </if>
+
+      <!-- bid another item -->
+      <request>
+        <dyn_variable name='authenticity_token'></dyn_variable>
+        <http url='/bid_items' version='1.1' method='GET'></http>
+      </request>
+
+      <thinktime value="1" random="true"></thinktime>
+
+      <setdynvars sourcetype="eval"
+                  code='fun({Pid,DynVars})->
+                        {ok,Val}=ts_dynvars:lookup(all_item,DynVars),
+                        random:seed(now()),
+                        lists:nth(random:uniform(length(Val)), Val) end.' >
+                  <var name="rnd_item_index_page_url" />
+      </setdynvars>
+
+      <request subst="true">
+        <dyn_variable name='authenticity_token'></dyn_variable>
+        <http url='%%_rnd_item_index_page_url%%' version='1.1' method='GET'></http>
+      </request>
+
+      <if var="authenticity_token" neq="">
+        <setdynvars sourcetype="eval"
+                  code='fun({Pid,DynVars})->
+                        {ok,Val}=ts_dynvars:lookup(authenticity_token,DynVars),
+                        re:replace(Val,"[+]","%2B",[global, {return,list}]) end.'>
+                  <var name="authenticity_token" />
+        </setdynvars>
+
+        <setdynvars sourcetype="random_number" start="10" end="50000">
+          <var name="bid_price" />
+        </setdynvars>
+
+        <thinktime value="1" random="true"></thinktime>
+
+        <request subst="true" >
+          <http url='%%_rnd_item_index_page_url%%/bid_records' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;bid_record[price]=%%_bid_price%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
+        </request>
+      </if>
+
+      <!-- go to profile -->
+      <request>
+        <http url='/users/profile' version='1.1' method='GET'></http>
+      </request>
+      
+      <!-- search something and link to it-->
+      <request subst="true">
+        <dyn_variable name='authenticity_token'></dyn_variable>
+        <http url='/searches/new' version='1.1' method='GET'></http>
+      </request>
+
+      <if var="authenticity_token" neq="">
+        <setdynvars sourcetype="eval"
+                  code='fun({Pid,DynVars})->
+                        {ok,Val}=ts_dynvars:lookup(authenticity_token,DynVars),
+                        re:replace(Val,"[+]","%2B",[global, {return,list}]) end.'>
+                  <var name="authenticity_token" />
+        </setdynvars>
+
+        <setdynvars sourcetype="random_number" start="1" end="10">
+          <var name="random_community" />
+        </setdynvars>
+
+        <thinktime value="1" random="true"></thinktime>
+
+        <request subst="true" >
+          <dyn_variable name="search_item" re="[Ll]ocation: http://.*/searches/(.*)\r" />
+          <http url='/searches' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;search[category_id]=%%_random_community%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
+        </request>
+
+        <request subst="true" >
+          <dyn_variable name="all_search_item_url" xpath="/html/body/div[2]/div/div/div/table/tbody/tr[*]/td[1]/a/@href"/>
+          <http url='/searches/%%_search_item%%' version='1.1' method='GET'></http>
+        </request>
+
+        <thinktime value="1" random="true"></thinktime>
+
+        <setdynvars sourcetype="eval"
+                  code='fun({Pid,DynVars})->
+                        {ok,Val}=ts_dynvars:lookup(all_search_item_url,DynVars),
+                        random:seed(now()),
+                        lists:nth(random:uniform(length(Val)), Val) end.' >
+                  <var name="rnd_search_item_url" />
+        </setdynvars>
+
+        <request subst="true">
+          <http url='%%_rnd_search_item_url%%' version='1.1' method='GET'></http>
+        </request>
+
+      </if>
+
+      <!-- another search but bid it-->
+      <request>
+        <http url='/' version='1.1' method='GET'></http>
+      </request>
+
+      <request>
+        <http url='/bid_items' version='1.1' method='GET'></http>
+      </request>
+
+      <request subst="true">
+        <dyn_variable name='authenticity_token'></dyn_variable>
+        <http url='/searches/new' version='1.1' method='GET'></http>
+      </request>
+
+      <thinktime value="1" random="true"></thinktime>
+
+      <if var="authenticity_token" neq="">
+        <setdynvars sourcetype="eval"
+                  code='fun({Pid,DynVars})->
+                        {ok,Val}=ts_dynvars:lookup(authenticity_token,DynVars),
+                        re:replace(Val,"[+]","%2B",[global, {return,list}]) end.'>
+                  <var name="authenticity_token" />
+        </setdynvars>
+
+        <setdynvars sourcetype="random_number" start="200" end="2000">
+          <var name="rnd_min_price" />
+        </setdynvars>
+
+        <setdynvars sourcetype="random_number" start="5000" end="50000">
+          <var name="rnd_max_price" />
+        </setdynvars>
+
+        <thinktime value="1" random="true"></thinktime>
+
+        <request subst="true" >
+          <dyn_variable name="search_item" re="[Ll]ocation: http://.*/searches/(.*)\r" />
+          <http url='/searches' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;search[min_price]=%%_rnd_min_price%%&amp;search[max_price]=%%_rnd_max_price%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
+        </request>
+
+        <request subst="true" >
+          <dyn_variable name="all_search_item_url" xpath="/html/body/div[2]/div/div/div/table/tbody/tr[*]/td[1]/a/@href"/>
+          <http url='/searches/%%_search_item%%' version='1.1' method='GET'></http>
+        </request>
+
+        <thinktime value="1" random="true"></thinktime>
+
+        <setdynvars sourcetype="eval"
+                  code='fun({Pid,DynVars})->
+                        {ok,Val}=ts_dynvars:lookup(all_search_item_url,DynVars),
+                        random:seed(now()),
+                        lists:nth(random:uniform(length(Val)), Val) end.' >
+                  <var name="rnd_search_item_url" />
+        </setdynvars>
+
+        <request subst="true">
+          <dyn_variable name='authenticity_token'></dyn_variable>
+          <http url='%%_rnd_search_item_url%%' version='1.1' method='GET'></http>
+        </request>
+
+        <if var="authenticity_token" neq="">
+          <setdynvars sourcetype="eval"
+                    code='fun({Pid,DynVars})->
+                          {ok,Val}=ts_dynvars:lookup(authenticity_token,DynVars),
+                          re:replace(Val,"[+]","%2B",[global, {return,list}]) end.'>
+                    <var name="authenticity_token" />
+          </setdynvars>
+
+          <thinktime value="1" random="true"></thinktime>
+
+          <request subst="true" >
+            <http url='%%_rnd_search_item_url%%/bid_records' version='1.1' contents="authenticity_token=%%_authenticity_token%%&amp;bid_record[price]=%%_rnd_max_price%%" content_type="application/x-www-form-urlencoded" method='POST'></http>
+          </request>
+        </if>
+
+      </if>
+
+    </session>
+  </sessions>
+</tsung>
