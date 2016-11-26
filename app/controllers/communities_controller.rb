@@ -13,14 +13,18 @@ class CommunitiesController < ApplicationController
     @users = []
     @community.user_communities.each do |uc|
       @users << User.find(uc.user_id)
+      # @users << uc
     end
-    @items = []
-    @users.each do |user|
-      @item = BidItem.where(:seller_id => user.id)
-      @item.each do |item|
-        @items << item
-      end
-    end
+
+    # @items = []
+    # @users.each do |user|
+    #   @item = BidItem.where(:seller_id => user.id)
+    #   @item.each do |item|
+    #     @items << item
+    #   end
+    # end
+
+    @items = BidItem.where(seller_id: @users).limit(100)
 
   end
 

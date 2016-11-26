@@ -23,7 +23,7 @@
     </div>
     <div class="col-md-6">
       <table width="300" border="1" style="float:left;">
-      <caption>Items in this community</caption>
+      <caption>First 100 items in this community</caption>
       <% @items.each do |item| %>
         <tr>
           <td><%= link_to item.item_name, bid_item_path(item) %>
