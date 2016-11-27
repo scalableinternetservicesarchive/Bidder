@@ -5,7 +5,7 @@
       <p>I am <%= current_user.email %></p>
       <div class="col-md-4">
         <table width="300" border="1" style="float:left;">
-          <caption>My first 10 selling items</caption>
+          <caption>My first 30 selling items</caption>
             <thead>
                 <th>
               Item Name
@@ -15,7 +15,7 @@
             </th>
             </thead>
             <tbody>
-            <% current_user.sell_items.first(10).each do |item| %>
+            <% current_user.sell_items.first(30).each do |item| %>
               <tr>
                 <td><%= link_to item.item_name, bid_item_path(item) %></td>
                 <td><%= item.current_price %></td>
