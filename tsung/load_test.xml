@@ -113,7 +113,7 @@
                   <var name="authenticity_token" />
         </setdynvars>
 
-        <setdynvars sourcetype="random_number" start="10" end="50000">
+        <setdynvars sourcetype="random_number" start="10" end="20000">
           <var name="rnd_bid_price" />
         </setdynvars>
 
@@ -153,7 +153,7 @@
                   <var name="authenticity_token" />
         </setdynvars>
 
-        <setdynvars sourcetype="random_number" start="10" end="50000">
+        <setdynvars sourcetype="random_number" start="10" end="20000">
           <var name="bid_price" />
         </setdynvars>
 
@@ -239,7 +239,7 @@
                   <var name="authenticity_token" />
         </setdynvars>
 
-        <setdynvars sourcetype="random_number" start="200" end="2000">
+        <setdynvars sourcetype="random_number" start="0" end="2000">
           <var name="rnd_min_price" />
         </setdynvars>
 
@@ -284,7 +284,7 @@
 
           <thinktime value="1" random="true"></thinktime>
 
-          <setdynvars sourcetype="random_number" start="5000" end="20000">
+          <setdynvars sourcetype="random_number" start="200" end="20000">
             <var name="rnd_bid_price" />
           </setdynvars>
 

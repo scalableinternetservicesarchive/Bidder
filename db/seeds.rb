@@ -12,7 +12,7 @@ puts 'Generating items for small sellers (id: 1 to 150)...'
 (1..150).each do |i|
 	total = r.rand(1..10)
 	total.times do |j|
-		BidItem.create(item_name: (0...10).map { o[rand(o.length)] }.join, starting_price: 200, current_price: 200, fixed_price: r.rand(500..50000), seller_id: i)
+		BidItem.create(item_name: (0...10).map { o[rand(o.length)] }.join, starting_price: r.rand(200..2000), fixed_price: r.rand(15000..50000), seller_id: i)
 	end
 end
 
@@ -20,7 +20,7 @@ puts 'Generating items for big sellers (id: 151 to 200)...'
 (151..200).each do |i|
 	total = r.rand(100..500)
 	total.times do |j|
-		BidItem.create(item_name: (0...10).map { o[rand(o.length)] }.join, starting_price: 10, current_price: 10, fixed_price: r.rand(500..50000), seller_id: i)
+		BidItem.create(item_name: (0...10).map { o[rand(o.length)] }.join, starting_price: r.rand(10, 500), fixed_price: r.rand(15000..50000), seller_id: i)
 	end
 end
 
