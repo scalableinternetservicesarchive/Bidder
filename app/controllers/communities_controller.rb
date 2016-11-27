@@ -24,7 +24,7 @@ class CommunitiesController < ApplicationController
     #   end
     # end
 
-    @items = BidItem.where(seller_id: @users).limit(30)
+    @items = BidItem.where(seller_id: @users).order("created_at DESC").limit(30)
 
   end
 
