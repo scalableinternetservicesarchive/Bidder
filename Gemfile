@@ -1,5 +1,8 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
+gem 'coffee-script-source', '1.8.0'
 
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+gem 'rspotify', '1.18.0'
 gem 'rails',                   '5.0.0.1'
 gem 'bcrypt',                  '3.1.11'
 gem 'faker',                   '1.6.6'
@@ -19,7 +22,7 @@ gem 'jbuilder',                '2.4.1'
 gem 'paperclip',               '~> 4.2'
 gem 'aws-sdk',                 '~> 1.6'
 gem 'devise'
-
+gem 'factory_girl_rails'
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug',  '9.0.0', platform: :mri
@@ -42,6 +45,8 @@ end
 group :production do
   gem 'pg',   '~> 0.19'
 end
+
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
