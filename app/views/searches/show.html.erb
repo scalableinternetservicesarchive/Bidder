@@ -9,14 +9,14 @@
             Item Name
           </th>
           <th>
-            Fixed Price
+            Current Price
           </th>
         </thead>
         <tbody>
           <% @search.results.each do |result| %>
             <tr>
               <td><%= link_to result.item_name, bid_item_path(result) %></td>
-              <td><%= result.fixed_price %></td>
+              <td><%= result.current_price %></td>
             </tr>
           <% end %>
         </tbody>
