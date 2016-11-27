@@ -15,6 +15,6 @@ class Search < ApplicationRecord
     results_o = results_o.where("current_price >= ?", min_price) if min_price.present?
     results_o = results_o.where("current_price <= ?", max_price) if max_price.present? 
 
-    results_o   
+    results_o[0..30]
   end
 end
