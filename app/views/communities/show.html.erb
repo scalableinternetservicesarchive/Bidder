@@ -9,31 +9,34 @@
     <p><%= link_to 'Join', join_community_path(@community), method: :post %> |
     <%= link_to 'Edit', edit_community_path(@community) %> |
     <%= link_to 'Back', communities_path %></p> 
-
-
-    <div class="col-md-6">
-      <table width="300" border="1" style="float:left;">
-      <caption>Users in this community</caption>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.email %></td>
-        </tr>
+     <% cache(cache_key_for_community_show_user_table(@community)) do %>
+      <div class="col-md-6">
+        <table width="300" border="1" style="float:left;">
+        <caption>Users in this community</caption>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.email %></td>
+          </tr>
+        <% end %>
+        </table>
+      </div>
       <% end %>
-      </table>
-    </div>
-    <div class="col-md-6">
-      <table width="300" border="1" style="float:left;">
-      <caption>First 30 items in this community</caption>
-      <% @items.each do |item| %>
-        <tr>
-          <td><%= link_to item.item_name, bid_item_path(item) %>
-          <% if item.buyer_id? %>
-            <b><font color="red">SOLD OUT</font></b>
-          <% end %>
-          </td>
-        </tr>
-      <% end %>
-      </table>
-    </div>
+
+    <% cache(cache_key_for_community_show_item_table(@items)) do %>
+      <div class="col-md-6">
+        <table width="300" border="1" style="float:left;">
+        <caption>First 30 items in this community</caption>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= link_to item.item_name, bid_item_path(item) %>
+            <% if item.buyer_id? %>
+              <b><font color="red">SOLD OUT</font></b>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </table>
+      </div>
+    <% end %>
   </div>
 </div>
