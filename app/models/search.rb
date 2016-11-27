@@ -12,8 +12,8 @@ class Search < ApplicationRecord
     end
     results_o = results_o.where("item_name like ?", "%#{keywords}%") if keywords.present?
 
-    results_o = results_o.where("fixed_price >= ?", min_price) if min_price.present?
-    results_o = results_o.where("fixed_price <= ?", max_price) if max_price.present? 
+    results_o = results_o.where("current_price >= ?", min_price) if min_price.present?
+    results_o = results_o.where("current_price <= ?", max_price) if max_price.present? 
 
     results_o[0..30]
   end

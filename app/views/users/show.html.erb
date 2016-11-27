@@ -29,11 +29,14 @@
         <table width="300" border="1" style="float:left;">
           <caption>My first 30 bidding history</caption>
           <thead>
-              <th>
+          <th>
             Item ID
           </th>
           <th>
             Bid Time
+          </th>
+          <th>
+            Bid Price
           </th>
           </thead>    
           <tbody>
@@ -42,6 +45,7 @@
               <tr>
                 <td><%= link_to bid_item_tmp.item_name, bid_item_path(bid_item_tmp) %></td>
                 <td><%= record.created_at %></td>
+                <td><%= record.price %></td>
               </tr> 
             <% end %>
           </tbody> 
