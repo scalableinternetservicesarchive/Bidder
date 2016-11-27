@@ -6,43 +6,43 @@
       <div class="col-md-4">
         <table width="300" border="1" style="float:left;">
           <caption>My first 30 selling items</caption>
-            <thead>
-                <th>
-              Item Name
-            </th>
-            <th>
-              Current Price
-            </th>
-            </thead>
-            <tbody>
-            <% current_user.sell_items.first(30).each do |item| %>
-              <tr>
-                <td><%= link_to item.item_name, bid_item_path(item) %></td>
-                <td><%= item.current_price %></td>
-              </tr>
-            <% end %>
-          </tbody>
+          <thead>
+              <th>
+            Item Name
+          </th>
+          <th>
+            Current Price
+          </th>
+          </thead>
+          <tbody>
+          <% current_user.sell_items.first(30).each do |item| %>
+            <tr>
+              <td><%= link_to item.item_name, bid_item_path(item) %></td>
+              <td><%= item.current_price %></td>
+            </tr>
+          <% end %>
+        </tbody>
         </table>
       </div>
 
       <div class="col-md-4">
         <table width="300" border="1" style="float:left;">
-          <caption>My bidding history</caption>
-            <thead>
-                <th>
-              Item ID
-            </th>
-            <th>
-              Bid Time
-            </th>
-            </thead>    
-            <tbody>
-                <% @bid_records.each do |record| %>
-                    <% bid_item_tmp = BidItem.find(record.bid_item_id) %>
-            <tr>
-              <td><%= link_to bid_item_tmp.item_name, bid_item_path(bid_item_tmp) %></td>
-              <td><%= record.created_at %></td>
-            </tr> 
+          <caption>My first 30 bidding history</caption>
+          <thead>
+              <th>
+            Item ID
+          </th>
+          <th>
+            Bid Time
+          </th>
+          </thead>    
+          <tbody>
+            <% @bid_records.first(30).each do |record| %>
+              <% bid_item_tmp = BidItem.find(record.bid_item_id) %>
+              <tr>
+                <td><%= link_to bid_item_tmp.item_name, bid_item_path(bid_item_tmp) %></td>
+                <td><%= record.created_at %></td>
+              </tr> 
             <% end %>
           </tbody> 
         </table>
@@ -50,14 +50,14 @@
 
       <div class="col-md-4">
         <table width="300" border="1" style="float:left;">
-          <caption>The items I bought</caption>
+          <caption>The first 30 items I bought</caption>
           <thead>
             <th>
               Item ID
             </th>
           </thead>  
           <tbody>
-          <% current_user.buy_items.each do |item| %>
+          <% current_user.buy_items.first(30).each do |item| %>
             <tr>
               <td><%= link_to item.item_name, bid_item_path(item) %></td>
             </tr>
