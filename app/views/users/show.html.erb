@@ -31,21 +31,27 @@
         <div class="col-md-4">
           <table width="300" border="1" style="float:left;">
             <caption>My bidding history</caption>
-              <thead>
-                  <th>
+            <thead>
+              <th>
                 Item ID
               </th>
               <th>
                 Bid Time
               </th>
-              </thead>    
-              <tbody>
-                  <% @bid_records.each do |record| %>
-                      <% bid_item_tmp = BidItem.find(record.bid_item_id) %>
-              <tr>
-                <td><%= link_to bid_item_tmp.item_name, bid_item_path(bid_item_tmp) %></td>
-                <td><%= record.created_at %></td>
-              </tr> 
+              <th>
+                Bid Price
+              </th>
+            </thead>    
+            <tbody>
+              <% @bid_records.each do |record| %>
+                <% cache(cache_key_for_record_for_profile(record)) do %>
+                  <% bid_item_tmp = BidItem.find(record.bid_item_id) %>
+                  <tr>
+                    <td><%= link_to bid_item_tmp.item_name, bid_item_path(bid_item_tmp) %></td>
+                    <td><%= record.created_at %></td>
+                    <td><%= record.price %></td>
+                  </tr> 
+                <% end %>
               <% end %>
             </tbody> 
           </table>

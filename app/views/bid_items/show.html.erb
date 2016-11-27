@@ -61,7 +61,7 @@
         </div>
       </div>
 
-      <% cache(cache_key_for_biditem_show_record(@bid_item)) do %>
+      <% cache(cache_key_for_biditem_show_record_table(@bid_item)) do %>
         <div class="col-md-7 col-md-offset-1">
           
           <% if @bid_records.blank? %>
@@ -69,6 +69,7 @@
           <% else %>
             <em><%= "#{@bid_records.length} bidding records" %></em>
             <% @bid_records.each do |record| %>
+
               <div class="bid_record">
                 <tr>
                   <td><%= record.created_at %>  </td>

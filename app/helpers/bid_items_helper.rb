@@ -11,7 +11,7 @@ module BidItemsHelper
     "bid_item-show-info-#{bid_item.id}-#{bid_item.updated_at}"
   end
 
-  def cache_key_for_biditem_show_record(bid_item)
+  def cache_key_for_biditem_show_record_table(bid_item)
     "bid_item-show-record-#{bid_item.id}-#{bid_item.updated_at}"
   end
 end
