@@ -7,15 +7,16 @@ bid_items = []
 communities = []
 user_communities = []
 
+#password = User.new(:password => "password").encrypted_password
 
 (1..800).each do |i|
-  users << "('#{i}_broswer@ucsb', '#{123456}','2000-01-01 12:34:56 UTC','2000-01-02 12:34:56 UTC')" 
+  users << "('#{i}_broswer@ucsb', '$2a$11$EqpBppDhqMxo7cdN34Wmh.A3GKM8/HhP64X8RikeNGWqry01czvJW','2000-01-01 12:34:56 UTC','2000-01-02 12:34:56 UTC')" 
   n += 1 
 end
 	
 
 (1..150).each do |i|
-  users << "('#{i}_small@ucsb', '#{123456}','2000-01-01 12:34:56 UTC','2000-01-02 12:34:56 UTC')" 
+  users << "('#{i}_small@ucsb', '$2a$11$EqpBppDhqMxo7cdN34Wmh.A3GKM8/HhP64X8RikeNGWqry01czvJW','2000-01-01 12:34:56 UTC','2000-01-02 12:34:56 UTC')" 
   n += 1
   total = r.rand(1..10)
   randnum=r.rand(800..10000)
@@ -26,7 +27,7 @@ end
 end	
 
 (1..50).each do |i|
-   users << "('#{i}big@ucsb', '#{123456}','2000-01-01 12:34:56 UTC','2000-01-02 12:34:56 UTC')" 
+   users << "('#{i}big@ucsb', '$2a$11$EqpBppDhqMxo7cdN34Wmh.A3GKM8/HhP64X8RikeNGWqry01czvJW','2000-01-01 12:34:56 UTC','2000-01-02 12:34:56 UTC')" 
     n += 1
   total = r.rand(100..500)
   randnum=r.rand(800..10000)
