@@ -3,11 +3,7 @@ class Search < ApplicationRecord
     results_o = BidItem.all
     if category_id.present?
       community = Community.find(category_id) 
-      users = []
-      community.user_communities.each do |uc|
-        users << uc
-      end
-
+      users = community.users
       results_o = results_o.where(seller_id: users)
     end
     results_o = results_o.where("item_name like ?", "%#{keywords}%") if keywords.present?
