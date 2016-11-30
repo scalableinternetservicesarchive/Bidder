@@ -16,7 +16,7 @@
             </th>
             </thead>
             <tbody>
-            <% current_user.sell_items.order("created_at DESC").first(30).each do |item| %>
+            <% current_user.sell_items.order("id DESC").first(30).each do |item| %>
               <tr>
                 <td><%= link_to item.item_name, bid_item_path(item) %></td>
                 <td><%= item.current_price %></td>
@@ -43,7 +43,7 @@
             </th>
             </thead>    
             <tbody>
-              <% current_user.bid_records.order("created_at DESC").first(30).each do |record| %>
+              <% current_user.bid_records.order("id DESC").first(30).each do |record| %>
                 <% bid_item_tmp = BidItem.find(record.bid_item_id) %>
                 <tr>
                   <td><%= link_to bid_item_tmp.item_name, bid_item_path(bid_item_tmp) %></td>
@@ -66,7 +66,7 @@
               </th>
             </thead>  
             <tbody>
-            <% current_user.buy_items.order("created_at DESC").first(30).each do |item| %>
+            <% current_user.buy_items.order("id DESC").first(30).each do |item| %>
               <tr>
                 <td><%= link_to item.item_name, bid_item_path(item) %></td>
               </tr>
