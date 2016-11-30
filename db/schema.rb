@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20161129232139) do
     t.datetime "image_updated_at"
     t.integer  "buyer_id"
     t.index ["buyer_id"], name: "index_bid_items_on_buyer_id"
+    t.index ["current_price"], name: "index_bid_items_on_current_price"
     t.index ["seller_id"], name: "index_bid_items_on_seller_id"
     t.index ["updated_at"], name: "index_bid_items_on_updated_at"
   end
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 20161129232139) do
     t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["community_id"], name: "index_user_communities_on_community_id"
   end
 
   create_table "users", force: :cascade do |t|
