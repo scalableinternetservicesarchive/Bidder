@@ -2,16 +2,20 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
-    <%= render 'layouts/rails_default' %>
-    <%= render 'layouts/shim' %>
+      <%= render 'layouts/rails_default' %>
+      <% cache("cache_key_for_shim") do %>
+        <%= render 'layouts/shim' %>
+      <% end %>
   </head>
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= render 'layouts/header' %>
-    <div class="container">
-      <%= yield %>
-      <%= render 'layouts/footer' %>
+    <div class="container">   
+        <%= yield %>
+      <% cache("cache_key_for_footer") do %>
+        <%= render 'layouts/footer' %>
+      <% end %>
       <%= debug(params) if Rails.env.development? %>
     </div>
   </body>

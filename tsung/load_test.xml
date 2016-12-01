@@ -9,7 +9,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="load-test-chienyu.kqsu4hptxs.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
+    <server host="continue-latest.kqsu4hptxs.us-west-2.elasticbeanstalk.com" port="80" type="tcp"></server>
   </servers>
 
 
@@ -29,21 +29,26 @@
     <arrivalphase phase="5" duration="30" unit="second">
       <users arrivalrate="16" unit="second"></users>
     </arrivalphase>
-<!--    <arrivalphase phase="6" duration="30" unit="second">
+   <arrivalphase phase="6" duration="30" unit="second">
      <users arrivalrate="32" unit="second"></users>
-   </arrivalphase> -->
-
-   <!--
+   </arrivalphase>   
    <arrivalphase phase="7" duration="30" unit="second">
-     <users arrivalrate="64" unit="second"></users>
+     <users arrivalrate="48" unit="second"></users>
    </arrivalphase>
    <arrivalphase phase="8" duration="30" unit="second">
-     <users arrivalrate="128" unit="second"></users>
-   </arrivalphase>
+     <users arrivalrate="64" unit="second"></users>
+   </arrivalphase>  
    <arrivalphase phase="9" duration="30" unit="second">
-     <users arrivalrate="256" unit="second"></users>
+     <users arrivalrate="72" unit="second"></users>
    </arrivalphase>
-    -->
+    <arrivalphase phase="10" duration="30" unit="second">
+     <users arrivalrate="80" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="11" duration="30" unit="second">
+     <users arrivalrate="88" unit="second"></users>
+    </arrivalphase>
+
+  
 
   </load>
 
